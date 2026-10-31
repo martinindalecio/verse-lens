@@ -1,0 +1,398 @@
+[
+ {
+  "name": "Genesis",
+  "slug": "genesis",
+  "testament": "OT",
+  "chapters": 50
+ },
+ {
+  "name": "Exodus",
+  "slug": "exodus",
+  "testament": "OT",
+  "chapters": 40
+ },
+ {
+  "name": "Leviticus",
+  "slug": "leviticus",
+  "testament": "OT",
+  "chapters": 27
+ },
+ {
+  "name": "Numbers",
+  "slug": "numbers",
+  "testament": "OT",
+  "chapters": 36
+ },
+ {
+  "name": "Deuteronomy",
+  "slug": "deuteronomy",
+  "testament": "OT",
+  "chapters": 34
+ },
+ {
+  "name": "Joshua",
+  "slug": "joshua",
+  "testament": "OT",
+  "chapters": 24
+ },
+ {
+  "name": "Judges",
+  "slug": "judges",
+  "testament": "OT",
+  "chapters": 21
+ },
+ {
+  "name": "Ruth",
+  "slug": "ruth",
+  "testament": "OT",
+  "chapters": 4
+ },
+ {
+  "name": "1 Samuel",
+  "slug": "1-samuel",
+  "testament": "OT",
+  "chapters": 31
+ },
+ {
+  "name": "2 Samuel",
+  "slug": "2-samuel",
+  "testament": "OT",
+  "chapters": 24
+ },
+ {
+  "name": "1 Kings",
+  "slug": "1-kings",
+  "testament": "OT",
+  "chapters": 22
+ },
+ {
+  "name": "2 Kings",
+  "slug": "2-kings",
+  "testament": "OT",
+  "chapters": 25
+ },
+ {
+  "name": "1 Chronicles",
+  "slug": "1-chronicles",
+  "testament": "OT",
+  "chapters": 29
+ },
+ {
+  "name": "2 Chronicles",
+  "slug": "2-chronicles",
+  "testament": "OT",
+  "chapters": 36
+ },
+ {
+  "name": "Ezra",
+  "slug": "ezra",
+  "testament": "OT",
+  "chapters": 10
+ },
+ {
+  "name": "Nehemiah",
+  "slug": "nehemiah",
+  "testament": "OT",
+  "chapters": 13
+ },
+ {
+  "name": "Esther",
+  "slug": "esther",
+  "testament": "OT",
+  "chapters": 10
+ },
+ {
+  "name": "Job",
+  "slug": "job",
+  "testament": "OT",
+  "chapters": 42
+ },
+ {
+  "name": "Psalms",
+  "slug": "psalms",
+  "testament": "OT",
+  "chapters": 150
+ },
+ {
+  "name": "Proverbs",
+  "slug": "proverbs",
+  "testament": "OT",
+  "chapters": 31
+ },
+ {
+  "name": "Ecclesiastes",
+  "slug": "ecclesiastes",
+  "testament": "OT",
+  "chapters": 12
+ },
+ {
+  "name": "Song of Solomon",
+  "slug": "song-of-solomon",
+  "testament": "OT",
+  "chapters": 8
+ },
+ {
+  "name": "Isaiah",
+  "slug": "isaiah",
+  "testament": "OT",
+  "chapters": 66
+ },
+ {
+  "name": "Jeremiah",
+  "slug": "jeremiah",
+  "testament": "OT",
+  "chapters": 52
+ },
+ {
+  "name": "Lamentations",
+  "slug": "lamentations",
+  "testament": "OT",
+  "chapters": 5
+ },
+ {
+  "name": "Ezekiel",
+  "slug": "ezekiel",
+  "testament": "OT",
+  "chapters": 48
+ },
+ {
+  "name": "Daniel",
+  "slug": "daniel",
+  "testament": "OT",
+  "chapters": 12
+ },
+ {
+  "name": "Hosea",
+  "slug": "hosea",
+  "testament": "OT",
+  "chapters": 14
+ },
+ {
+  "name": "Joel",
+  "slug": "joel",
+  "testament": "OT",
+  "chapters": 3
+ },
+ {
+  "name": "Amos",
+  "slug": "amos",
+  "testament": "OT",
+  "chapters": 9
+ },
+ {
+  "name": "Obadiah",
+  "slug": "obadiah",
+  "testament": "OT",
+  "chapters": 1
+ },
+ {
+  "name": "Jonah",
+  "slug": "jonah",
+  "testament": "OT",
+  "chapters": 4
+ },
+ {
+  "name": "Micah",
+  "slug": "micah",
+  "testament": "OT",
+  "chapters": 7
+ },
+ {
+  "name": "Nahum",
+  "slug": "nahum",
+  "testament": "OT",
+  "chapters": 3
+ },
+ {
+  "name": "Habakkuk",
+  "slug": "habakkuk",
+  "testament": "OT",
+  "chapters": 3
+ },
+ {
+  "name": "Zephaniah",
+  "slug": "zephaniah",
+  "testament": "OT",
+  "chapters": 3
+ },
+ {
+  "name": "Haggai",
+  "slug": "haggai",
+  "testament": "OT",
+  "chapters": 2
+ },
+ {
+  "name": "Zechariah",
+  "slug": "zechariah",
+  "testament": "OT",
+  "chapters": 14
+ },
+ {
+  "name": "Malachi",
+  "slug": "malachi",
+  "testament": "OT",
+  "chapters": 4
+ },
+ {
+  "name": "Matthew",
+  "slug": "matthew",
+  "testament": "NT",
+  "chapters": 28
+ },
+ {
+  "name": "Mark",
+  "slug": "mark",
+  "testament": "NT",
+  "chapters": 16
+ },
+ {
+  "name": "Luke",
+  "slug": "luke",
+  "testament": "NT",
+  "chapters": 24
+ },
+ {
+  "name": "John",
+  "slug": "john",
+  "testament": "NT",
+  "chapters": 21
+ },
+ {
+  "name": "Acts",
+  "slug": "acts",
+  "testament": "NT",
+  "chapters": 28
+ },
+ {
+  "name": "Romans",
+  "slug": "romans",
+  "testament": "NT",
+  "chapters": 16
+ },
+ {
+  "name": "1 Corinthians",
+  "slug": "1-corinthians",
+  "testament": "NT",
+  "chapters": 16
+ },
+ {
+  "name": "2 Corinthians",
+  "slug": "2-corinthians",
+  "testament": "NT",
+  "chapters": 13
+ },
+ {
+  "name": "Galatians",
+  "slug": "galatians",
+  "testament": "NT",
+  "chapters": 6
+ },
+ {
+  "name": "Ephesians",
+  "slug": "ephesians",
+  "testament": "NT",
+  "chapters": 6
+ },
+ {
+  "name": "Philippians",
+  "slug": "philippians",
+  "testament": "NT",
+  "chapters": 4
+ },
+ {
+  "name": "Colossians",
+  "slug": "colossians",
+  "testament": "NT",
+  "chapters": 4
+ },
+ {
+  "name": "1 Thessalonians",
+  "slug": "1-thessalonians",
+  "testament": "NT",
+  "chapters": 5
+ },
+ {
+  "name": "2 Thessalonians",
+  "slug": "2-thessalonians",
+  "testament": "NT",
+  "chapters": 3
+ },
+ {
+  "name": "1 Timothy",
+  "slug": "1-timothy",
+  "testament": "NT",
+  "chapters": 6
+ },
+ {
+  "name": "2 Timothy",
+  "slug": "2-timothy",
+  "testament": "NT",
+  "chapters": 4
+ },
+ {
+  "name": "Titus",
+  "slug": "titus",
+  "testament": "NT",
+  "chapters": 3
+ },
+ {
+  "name": "Philemon",
+  "slug": "philemon",
+  "testament": "NT",
+  "chapters": 1
+ },
+ {
+  "name": "Hebrews",
+  "slug": "hebrews",
+  "testament": "NT",
+  "chapters": 13
+ },
+ {
+  "name": "James",
+  "slug": "james",
+  "testament": "NT",
+  "chapters": 5
+ },
+ {
+  "name": "1 Peter",
+  "slug": "1-peter",
+  "testament": "NT",
+  "chapters": 5
+ },
+ {
+  "name": "2 Peter",
+  "slug": "2-peter",
+  "testament": "NT",
+  "chapters": 3
+ },
+ {
+  "name": "1 John",
+  "slug": "1-john",
+  "testament": "NT",
+  "chapters": 5
+ },
+ {
+  "name": "2 John",
+  "slug": "2-john",
+  "testament": "NT",
+  "chapters": 1
+ },
+ {
+  "name": "3 John",
+  "slug": "3-john",
+  "testament": "NT",
+  "chapters": 1
+ },
+ {
+  "name": "Jude",
+  "slug": "jude",
+  "testament": "NT",
+  "chapters": 1
+ },
+ {
+  "name": "Revelation",
+  "slug": "revelation",
+  "testament": "NT",
+  "chapters": 22
+ }
+]
