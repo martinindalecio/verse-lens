@@ -3,6 +3,7 @@
 ## Project docs
 
 - **docs/DESIGN.md**: product decisions, risks, and why the app is shaped the way it is
+- **docs/designs/reading-companion.md**: approved plan for person cards, passage context, sync and the build order
 - **TODOS.md**: deferred work, in priority order
 
 ## Rules for this codebase
