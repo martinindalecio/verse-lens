@@ -1,0 +1,25 @@
+{
+  "_about": "Hand-checked corrections applied on top of STEPBible TIPNR by scripts/build-people.py. STEPBible's licence asks that changes to its data be visible to users of the new data, so every entry says why. Consider sending corrections upstream to STEPBible@Gmail.com.",
+  "spans": [
+    { "ref": "acts 1:18", "text": "Judas", "person": "Judas@Mat.10.4-Act", "note": "Judas Iscariot (Acts 1:16-20); chapter also names Judas son of James (1:13)." },
+    { "ref": "acts 4:1", "text": "John", "person": "John@Mat.4.21-Rev", "note": "Apostle John with Peter; chapter also names John of the high priest's family (4:6)." },
+    { "ref": "acts 4:3", "text": "John", "person": "John@Mat.4.21-Rev", "note": "As 4:1." },
+    { "ref": "acts 4:7", "text": "John", "person": "John@Mat.4.21-Rev", "note": "As 4:1." },
+    { "ref": "acts 4:23", "text": "John", "person": "John@Mat.4.21-Rev", "note": "As 4:1." },
+    { "ref": "acts 10:18", "text": "Simon", "person": "Peter@Mat.4.18-2Pe", "note": "'Simon called Peter'; chapter also names Simon the tanner." },
+    { "ref": "acts 11:13", "text": "Simon", "person": "Peter@Mat.4.18-2Pe", "note": "'Simon who is called Peter'." },
+    { "ref": "acts 13:4", "text": "Saul", "person": "Paul@Act.7.58-2Pe", "note": "Barnabas and Saul sent out; chapter also names King Saul (13:21-22)." },
+    { "ref": "acts 13:22", "text": "Saul", "person": "Saul@1Sa.9.2-Act", "note": "King Saul removed in favour of David." },
+    { "ref": "acts 18:7", "text": "Titus", "person": "Justus@Act.18.7", "note": "The BSB spells Titius Justus 'Titus Justus'; not Paul's companion Titus." },
+    { "ref": "2-chronicles 22:6", "text": "Jehoram", "person": "Jehoram@1Ki.22.50-Mat", "note": "'Jehoram king of Judah', father of Ahaziah; not Joram son of Ahab, named later in the verse." },
+    { "ref": "2-kings 14:1", "text": "Jehoash", "person": "Joash@2Ki.13.9-Amo", "note": "Jehoash son of Jehoahaz, king of Israel." },
+    { "ref": "2-kings 14:23", "text": "Jehoash", "person": "Joash@2Ki.13.9-Amo", "note": "Father of Jeroboam II, king of Israel." },
+    { "ref": "romans 16:14", "text": "Hermas", "person": "Hermas@Rom.16.14b", "note": "Hermes and Hermas are two people greeted in the same verse." },
+    { "ref": "numbers 26:6", "text": "Hezron", "person": "Hezron@Gen.46.9-1Ch", "note": "Listed among Reuben's clans (26:5-7), so Reuben's son, not Judah's grandson." },
+    { "ref": "1-chronicles 26:1", "text": "Kore", "person": "Kore@1Ch.9.19-", "note": "Meshelemiah's father, the gatekeeper Kore of 1 Chr 9:19, not Korah the rebel." }
+  ],
+  "replace": [
+    { "book": "acts", "chapters": [25, 28], "from": "Claudius@Act.11.28-", "to": "Nero@Php.4.22-2Ti", "note": "The Caesar Paul appeals to under Festus (governor from about AD 59) is Nero; Claudius died in AD 54." },
+    { "book": "acts", "chapters": [25, 28], "from": "Augustus@Luk.2.1-Act", "to": "Nero@Php.4.22-2Ti", "note": "As above." }
+  ]
+}

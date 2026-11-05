@@ -11,5 +11,6 @@ In priority order.
 7. **Reader preferences:** choose which traditions appear; remember the last chapter read.
 8. **Search** by reference ("John 3:16") and by keyword.
 9. **Proper 404 status** for unknown chapters (today the not-found page renders with status 200 because it streams inside Suspense).
-10. **People overrides file** (`data/people/overrides.json`): hand-checked fixes for verses where two same-named people share a chapter (Acts 4 Johns, Acts 10 Simons, Acts 13 Sauls) and TIPNR's 10 ambiguous cases; apply in `scripts/build-people.py`.
-11. **Divine-name tagging rules** for God, the LORD, the Lord and the Holy Spirit (not in TIPNR's verse lists); review "Lord" meaning "sir/master".
+10. **Review divine-name rules**: "Spirit" describing God's nature (John 4:24 "God is Spirit") is tagged as the Holy Spirit; NT "the Lord" gets a "God or Jesus" card. Consider per-verse overrides for common passages.
+11. **Check low-scoring books** in `docs/research/people-tagging.md` (Psalms 56%, Hosea 66%) and add overrides where names are mis-tagged.
+12. **Send corrections upstream**: the Caesar-in-Acts-25-28 fix and others in `data/people/overrides.json` to STEPBible@Gmail.com.

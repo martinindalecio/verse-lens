@@ -108,6 +108,82 @@ def load_bible() -> tuple[dict, dict]:
     return slugs, texts
 
 
+def apply_overrides(mentions: dict, texts: dict, ids: set, stats: Counter) -> None:
+    """Apply data/people/overrides.json. Overridden spans carry a 4th element, 2."""
+    overrides = json.loads((OUT / "overrides.json").read_text())
+    for o in overrides["spans"]:
+        slug, cv = o["ref"].split()
+        ch, v = map(int, cv.split(":"))
+        if o["person"] not in ids:
+            sys.exit(f"override {o['ref']}: unknown person {o['person']}")
+        text = texts[slug][ch - 1][v - 1]
+        found = [m.span() for m in re.finditer(rf"(?<![\w’'-]){re.escape(o['text'])}(?![\w-])", text)]
+        if len(found) < o.get("occurrence", 1):
+            sys.exit(f"override {o['ref']}: '{o['text']}' not found in “{text}”")
+        start, end = found[o.get("occurrence", 1) - 1]
+        verses = mentions.setdefault(slug, {})
+        spans = [sp for sp in verses.get(f"{ch}:{v}", []) if sp[1] <= start or sp[0] >= end]
+        verses[f"{ch}:{v}"] = sorted(spans + [[start, end, o["person"], 2]])
+        stats["overrides"] += 1
+    for r in overrides["replace"]:
+        if r["to"] not in ids:
+            sys.exit(f"override replace: unknown person {r['to']}")
+        first, last = r["chapters"]
+        for key, spans in mentions.get(r["book"], {}).items():
+            if first <= int(key.split(":")[0]) <= last:
+                for sp in spans:
+                    if sp[2] == r["from"]:
+                        sp[2] = r["to"]
+                        sp[3:] = [2]
+                        stats["overrides"] += 1
+
+
+# God, the Holy Spirit and "the Lord" are not in TIPNR's verse lists, so they are tagged by
+# text rules. Rule-based spans carry a 4th element, 3. Existing person spans win.
+JESUS = "Jesus@Isa.7.14-Rev"
+DIVINE = [
+    {"id": "divine:god", "name": "God", "type": "Divine", "description": "God, called the LORD (YHWH), God, and the Lord",
+     "brief": "The God of Israel, the creator, called the LORD (YHWH)"},
+    {"id": "divine:spirit", "name": "Holy Spirit", "type": "Divine", "description": "The Spirit of God",
+     "brief": "The Spirit of God, called the Holy Spirit"},
+    {"id": "divine:lord", "name": "the Lord", "type": "Divine", "description": "In the New Testament, 'the Lord' can mean God or Jesus",
+     "brief": "Can mean God or Jesus; the context decides"},
+]
+# (pattern, person id, testament or None for both). Order matters: longer phrases first.
+DIVINE_RULES = [
+    (r"Holy Spirit", "divine:spirit", None),
+    (r"Spirit", "divine:spirit", None),
+    (r"LORD|GOD", "divine:god", None),
+    (r"God", "divine:god", None),
+    (r"Lord(?= Jesus)", JESUS, "NT"),
+    (r"Christ", JESUS, "NT"),
+    (r"Lord", "divine:god", "OT"),
+    (r"Lord", "divine:lord", "NT"),
+]
+
+
+def tag_divine(mentions: dict, texts: dict, stats: Counter) -> None:
+    order = list(texts)
+    for slug, chapters in texts.items():
+        testament = "OT" if order.index(slug) < 39 else "NT"
+        verses = mentions.setdefault(slug, {})
+        for ch, chapter in enumerate(chapters, 1):
+            for v, text in enumerate(chapter, 1):
+                key = f"{ch}:{v}"
+                spans = verses.get(key, [])
+                added = []
+                for pattern, pid, only in DIVINE_RULES:
+                    if only and only != testament:
+                        continue
+                    for m in re.finditer(rf"(?<![\w’'-])(?:{pattern})(?![\w-])", text):
+                        if any(sp[0] < m.end() and m.start() < sp[1] for sp in spans + added):
+                            continue
+                        added.append([m.start(), m.end(), pid, 3])
+                        stats[f"divine:{pid}"] += 1
+                if added:
+                    verses[key] = sorted(spans + added)
+
+
 def main(src: str) -> None:
     people = parse_tipnr(Path(src))
     slugs, texts = load_bible()
@@ -176,7 +252,13 @@ def main(src: str) -> None:
             stats["found"] += 1
             by_book[slug]["found"] += 1
         if spans:
-            mentions[slug][f"{ch}:{v}"] = sorted([s, e, pid] for (s, e), pid in spans.items())
+            # A person with two forms ("Pharaoh", "Pharaoh Neco") can match overlapping words;
+            # keep the longest.
+            kept = []
+            for (s, e), pid in sorted(spans.items(), key=lambda kv: kv[0][0] - kv[0][1]):
+                if all(e <= ks or s >= ke for ks, ke, _ in kept):
+                    kept.append([s, e, pid])
+            mentions[slug][f"{ch}:{v}"] = sorted(kept)
 
     # Second pass: the BSB often writes a name where the Greek/Hebrew has only "he", so those
     # words have no TIPNR reference. If exactly one person with that name is tagged in the
@@ -210,11 +292,15 @@ def main(src: str) -> None:
             if verses:
                 mentions[slug] = verses
 
+    apply_overrides(mentions, texts, {p["id"] for p in people}, stats)
+    tag_divine(mentions, texts, stats)
+
     OUT.mkdir(parents=True, exist_ok=True)
     (OUT / "mentions").mkdir(exist_ok=True)
     for slug, verses in mentions.items():
         (OUT / "mentions" / f"{slug}.json").write_text(json.dumps(verses, separators=(",", ":")))
     records = [{k: v for k, v in p.items() if k != "forms"} | {"names": sorted({n for f in p["forms"] for n in f["names"]})} for p in people]
+    records += DIVINE
     (OUT / "people.json").write_text(json.dumps(records, ensure_ascii=False, separators=(",", ":")))
 
     def pct(c):
@@ -232,6 +318,8 @@ def main(src: str) -> None:
         f"- Missed (name not in the BSB verse): {stats['missed']}",
         f"- Ambiguous (two people claim the same word): {stats['ambiguous']}",
         f"- Added from chapter context (name the BSB supplies for clarity): {stats['inferred']}",
+        f"- Hand-checked corrections applied (data/people/overrides.json): {stats['overrides']}",
+        f"- Divine names tagged by rule: God {stats['divine:divine:god']}, Holy Spirit {stats['divine:divine:spirit']}, Jesus (Christ / Lord Jesus) {stats['divine:' + JESUS]}, NT 'the Lord' {stats['divine:divine:lord']}",
         f"- Verse not in BSB: {stats['no_verse']}; unparsed references: {bad_refs}",
         "",
         f"**Acts:** {acts['found']} of {acts['refs']} found ({pct(acts)}), {acts['missed']} missed, {acts['ambiguous']} ambiguous, {acts['inferred']} added from context.",
