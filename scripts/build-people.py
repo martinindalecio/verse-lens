@@ -38,6 +38,9 @@ PERSON_TYPES = {"Male", "Female"}
 # Words for peoples and tribes ("Jews", "Levites") are linked in TIPNR to the ancestor
 # (Judah, Levi). They are not that person, so they are never tagged as them.
 GENTILIC_RE = re.compile(r"(ites?|Jews?|Jewess|Greeks?|Gentiles?|Hebrews?|Romans?|Egyptians?)$")
+# Some people carry a divine title among their forms (TIPNR lists "God" under Israel/Jacob);
+# those words are tagged by the divine-name rules, never as a human person.
+DIVINE_WORDS = {"God", "GOD", "LORD", "Lord", "Spirit", "Holy Spirit", "Almighty", "Most High", "Christ"}
 REF_RE = re.compile(r"^([1-3]?[A-Z][a-z]{1,2})\.(\d+)\.(\d+)([a-z]?)$")
 
 
@@ -49,7 +52,7 @@ def clean_name(raw: str) -> list[str]:
         for text in texts.split(","):
             text = re.sub(r"[/–\[\]()]", " ", text)
             text = re.sub(r"\s+", " ", text).strip().rstrip(":")
-            if not text or not text[0].isupper() or GENTILIC_RE.search(text):
+            if not text or not text[0].isupper() or GENTILIC_RE.search(text) or text in DIVINE_WORDS:
                 continue
             if not versions or "ESV" in versions or "NIV" in versions:
                 preferred.append(text)

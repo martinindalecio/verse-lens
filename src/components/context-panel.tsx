@@ -30,9 +30,9 @@ export function ContextPanel({ state }: { state: ContextState }) {
 
   const c = state.context;
   return (
-    <div className="space-y-6 text-sm">
+    <div className="space-y-6 text-base">
       <div className="space-y-2">
-        <h2 className="font-serif text-xl font-semibold">{state.reference}</h2>
+        <h2 className="text-2xl font-bold">{state.reference}</h2>
         <p>{c.summary}</p>
       </div>
 
@@ -123,7 +123,7 @@ export function ContextPanel({ state }: { state: ContextState }) {
 function Section({ title, note, children }: { title: string; note?: string; children: ReactNode }) {
   return (
     <section className="space-y-2">
-      <h3 className="text-xs font-semibold uppercase tracking-wide text-muted">
+      <h3 className="text-lg font-bold">
         {title}
         {note && <span className="ml-2 font-normal normal-case tracking-normal italic">{note}</span>}
       </h3>

@@ -1,24 +1,49 @@
 @import "tailwindcss";
 
+/* Wayfinder: one legible family (Atkinson Hyperlegible), large targets, the story drawn as a
+   route. Per-person colors (--p0 ... --p7) mark names in the text, assigned per chapter. */
+
 :root {
-  --background: #fbfaf7;
-  --foreground: #1f1d1a;
-  --muted: #6b6560;
-  --line: #e6e1d8;
-  --accent: #8a5a2b;
-  --highlight: #f4e7c9;
+  --background: #f1f4f3;
+  --foreground: #15262e;
+  --muted: #4f6068;
+  --line: #dde5e7;
+  --accent: #0e5e7a;
+  --highlight: #d7e9ef;
   --card: #ffffff;
+  --chip: #eaf0f1;
+  --route: #c7922f;
+  --divine: #8b9aa1;
+  --p0: #2b5aa6;
+  --p1: #237352;
+  --p2: #9a5b0c;
+  --p3: #a12d47;
+  --p4: #6a4c9c;
+  --p5: #1f7a85;
+  --p6: #7a5230;
+  --p7: #50606e;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #14130f;
-    --foreground: #ece8e1;
-    --muted: #a39d94;
-    --line: #2e2b25;
-    --accent: #e0a96d;
-    --highlight: #3a2f1c;
-    --card: #1c1a16;
+    --background: #0f171b;
+    --foreground: #e6eef0;
+    --muted: #9fb1b8;
+    --line: #263439;
+    --accent: #6cc3df;
+    --highlight: #1d3a45;
+    --card: #172227;
+    --chip: #1f2c31;
+    --route: #d9a84a;
+    --divine: #6c7d84;
+    --p0: #7fa8ec;
+    --p1: #5fc496;
+    --p2: #e0a552;
+    --p3: #ec7f97;
+    --p4: #b39ae6;
+    --p5: #5fc9d4;
+    --p6: #cfa27a;
+    --p7: #a7b6c4;
   }
 }
 
@@ -30,12 +55,58 @@
   --color-accent: var(--accent);
   --color-highlight: var(--highlight);
   --color-card: var(--card);
-  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  --color-chip: var(--chip);
+  --color-route: var(--route);
+  --font-sans: "Atkinson Hyperlegible", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-serif: "Atkinson Hyperlegible", ui-sans-serif, system-ui, sans-serif;
+}
+
+html {
+  /* Follow the reader's text-size setting: everything is sized in rem from here. */
+  font-size: 100%;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
+  overscroll-behavior-y: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Names in the text: underlined in the person's chapter color. */
+.person-name {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  padding: 0 0.1em;
+  margin: 0 -0.1em;
+  border-radius: 0.3em;
+  cursor: pointer;
+  text-decoration-line: underline;
+  text-decoration-thickness: 0.15em;
+  text-underline-offset: 0.25em;
+  text-decoration-color: var(--person-color, var(--accent));
+  -webkit-touch-callout: none;
+}
+.person-name[data-divine] {
+  text-decoration-style: dotted;
+  text-decoration-thickness: 0.12em;
+  --person-color: var(--divine);
+}
+.person-name[aria-current="true"] {
+  background: var(--highlight);
+  outline: 2px solid var(--person-color, var(--accent));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
