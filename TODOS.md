@@ -3,7 +3,7 @@
 In priority order.
 
 1. **Rate limiting** on `POST /api/context` before any public deploy (it spends API credits).
-2. **Persistent cache** for generated context (Postgres/Supabase or `'use cache: remote'`). The in-memory cache is lost on every cold start.
+2. **Faster person cards**: a card makes ~7 database round trips (about 1.2 s from the dev sandbox); fold them into fewer queries or cache cards per (person, position).
 3. **Grounding with real sources:** retrieve from public-domain lexicons and reference works and cite them, instead of relying on the model's memory.
 4. **Eval set:** 30-50 passages with known facts and common pitfalls (dates, Strong's numbers, attributions); run it whenever the prompt changes.
 5. **Streaming** the context panel so the first sections show up quickly.

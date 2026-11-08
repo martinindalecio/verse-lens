@@ -16,7 +16,9 @@ Scripture text is the [Berean Standard Bible](https://berean.bible/), which is i
 
 ```bash
 npm install
-cp .env.example .env.local   # then add your ANTHROPIC_API_KEY
+neon env pull                # writes DATABASE_URL / DATABASE_URL_UNPOOLED to .env.local
+node --env-file=.env.local scripts/load-people.mjs   # loads people data into Neon (safe to re-run)
+# add ANTHROPIC_API_KEY to .env.local
 npm run dev
 ```
 

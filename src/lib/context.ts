@@ -2,6 +2,7 @@ import Anthropic from "@anthropic-ai/sdk";
 import { betaZodOutputFormat } from "@anthropic-ai/sdk/helpers/beta/zod";
 import { formatReference, TRANSLATION, type Passage } from "./bible";
 import { PassageContextSchema, type PassageContext } from "./context-schema";
+import { db } from "./db";
 
 const MODEL = "claude-opus-5-5";
 
@@ -21,22 +22,39 @@ Your job is context, not preaching:
 // Created lazily so builds and pages that never call the API don't need credentials.
 let client: Anthropic | undefined;
 
-// In-memory cache: context for a passage is the same for every reader, so we
-// generate it once. This resets on every deploy/cold start; see TODOS.md for
-// moving it to a database.
-const cache = new Map<string, Promise<PassageContext>>();
+// Context for a passage is the same for every reader, so it is generated once and stored in
+// Postgres (passage_context). The in-memory map only joins concurrent requests for the same
+// passage so they don't each call the model.
+const inFlight = new Map<string, Promise<PassageContext>>();
 
 export class ContextRefusedError extends Error {}
 
 export function getPassageContext(passage: Passage, chapterVerses: string[]): Promise<PassageContext> {
   const key = `v${PROMPT_VERSION}:${passage.book.slug}.${passage.chapter}.${passage.start}-${passage.end}`;
-  let pending = cache.get(key);
+  let pending = inFlight.get(key);
   if (!pending) {
-    pending = generate(passage, chapterVerses);
-    cache.set(key, pending);
-    pending.catch(() => cache.delete(key));
+    pending = loadOrGenerate(passage, chapterVerses).finally(() => inFlight.delete(key));
+    inFlight.set(key, pending);
   }
   return pending;
+}
+
+async function loadOrGenerate(passage: Passage, chapterVerses: string[]): Promise<PassageContext> {
+  const where = ["en", "bsb", passage.book.slug, passage.chapter, passage.start, passage.end, PROMPT_VERSION];
+  const stored = (await db().query(
+    `select context from passage_context
+      where lang = $1 and translation = $2 and book = $3 and chapter = $4 and start_v = $5 and end_v = $6 and prompt_version = $7`,
+    where,
+  )) as { context: unknown }[];
+  if (stored[0]) return PassageContextSchema.parse(stored[0].context);
+
+  const context = await generate(passage, chapterVerses);
+  await db().query(
+    `insert into passage_context (lang, translation, book, chapter, start_v, end_v, prompt_version, context)
+     values ($1, $2, $3, $4, $5, $6, $7, $8) on conflict do nothing`,
+    [...where, JSON.stringify(context)],
+  );
+  return context;
 }
 
 async function generate(passage: Passage, chapterVerses: string[]): Promise<PassageContext> {

@@ -1,27 +1,18 @@
-import { readFile } from "node:fs/promises";
-import path from "node:path";
 import { BOOKS, getChapter } from "./bible";
+import { db } from "./db";
 
-// People data built by scripts/build-people.py from STEPBible TIPNR (CC BY 4.0).
-// Read from data/people/ for now; the same data loads into Postgres via scripts/load-people.py.
+// People data built by scripts/build-people.py from STEPBible TIPNR (CC BY 4.0) and loaded into
+// Neon Postgres by scripts/load-people.mjs. Verse text itself always comes from data/bsb/.
 
-type PersonRecord = {
-  id: string;
-  name: string;
-  type: "Male" | "Female" | "Divine";
-  description: string;
-  briefest?: string;
-  brief?: string;
-  short?: string;
-  parents?: string[];
-  siblings?: string[];
-  partners?: string[];
-  offspring?: string[];
-  names?: string[];
-};
+const TRANSLATION = "bsb";
+const LANG = "en";
+// Per-person colors in the text; the CSS defines --p0 ... --p7.
+const PALETTE_SIZE = 8;
+const BOOK_SLUGS = BOOKS.map((b) => b.slug);
+const bookIndex = (slug: string) => BOOK_SLUGS.indexOf(slug);
 
-/** [start, end, personId, flag?]; flag 1 = inferred from chapter, 2 = hand-checked, 3 = rule (divine). */
-export type Span = [number, number, string, number?];
+/** [start, end, personId] of a name in the verse text. */
+export type Span = [number, number, string];
 
 export type ChapterPerson = { name: string; divine: boolean; color: number | null };
 
@@ -62,77 +53,27 @@ export type PersonCard = {
   appearsWith: PersonLink[];
 };
 
-const DATA = path.join(process.cwd(), "data", "people");
-// Mentions of one person within this many verses of each other in a chapter form one episode.
-const EPISODE_GAP = 5;
-// Per-person colors in the text; the CSS defines --p0 ... --p7.
-const PALETTE_SIZE = 8;
-
-let peoplePromise: Promise<Map<string, PersonRecord>> | undefined;
-const mentionCache = new Map<string, Promise<Record<string, Span[]>>>();
-let indexPromise: Promise<Map<string, [number, number, number][]>> | undefined;
-
-function loadPeople() {
-  peoplePromise ??= readFile(path.join(DATA, "people.json"), "utf-8").then(
-    (raw) => new Map((JSON.parse(raw) as PersonRecord[]).map((p) => [p.id, p])),
-  );
-  return peoplePromise;
-}
-
-function loadMentions(slug: string) {
-  let pending = mentionCache.get(slug);
-  if (!pending) {
-    pending = readFile(path.join(DATA, "mentions", `${slug}.json`), "utf-8")
-      .then((raw) => JSON.parse(raw) as Record<string, Span[]>)
-      .catch(() => ({}));
-    mentionCache.set(slug, pending);
-  }
-  return pending;
-}
-
-/** personId -> [bookIndex, chapter, verse] for every mention, in Bible order. */
-function loadIndex() {
-  indexPromise ??= (async () => {
-    const index = new Map<string, [number, number, number][]>();
-    for (const [b, book] of BOOKS.entries()) {
-      const verses = await loadMentions(book.slug);
-      for (const [key, spans] of Object.entries(verses)) {
-        const [ch, v] = key.split(":").map(Number);
-        for (const [, , pid] of spans) {
-          const list = index.get(pid) ?? [];
-          const last = list.at(-1);
-          if (!last || last[0] !== b || last[1] !== ch || last[2] !== v) list.push([b, ch, v]);
-          index.set(pid, list);
-        }
-      }
-    }
-    for (const list of index.values()) list.sort((x, y) => x[0] - y[0] || x[1] - y[1] || x[2] - y[2]);
-    return index;
-  })();
-  return indexPromise;
-}
-
 export async function getChapterPeople(slug: string, chapter: number): Promise<ChapterPeople> {
-  const [people, verses] = await Promise.all([loadPeople(), loadMentions(slug)]);
+  const rows = (await db().query(
+    `select m.verse, m.start_char, m.end_char, m.person_id, p.name, p.kind
+       from person_mentions m join people p on p.id = m.person_id
+      where m.translation = $1 and m.book = $2 and m.chapter = $3
+      order by m.verse, m.start_char`,
+    [TRANSLATION, slug, chapter],
+  )) as { verse: number; start_char: number; end_char: number; person_id: string; name: string; kind: string }[];
+
   const spans: Record<number, Span[]> = {};
-  const chapterPeople: Record<string, ChapterPerson> = {};
+  const people: Record<string, ChapterPerson> = {};
   let nextColor = 0;
-  for (const [key, list] of Object.entries(verses)) {
-    const [ch, v] = key.split(":").map(Number);
-    if (ch === chapter) spans[v] = list;
-  }
-  for (const v of Object.keys(spans).map(Number).sort((a, b) => a - b)) {
-    for (const [, , pid] of spans[v]) {
-      if (chapterPeople[pid]) continue;
-      const p = people.get(pid);
-      const divine = p?.type === "Divine" || pid.startsWith("divine:");
-      chapterPeople[pid] = { name: p?.name ?? pid, divine, color: divine ? null : nextColor++ % PALETTE_SIZE };
+  for (const r of rows) {
+    (spans[r.verse] ??= []).push([r.start_char, r.end_char, r.person_id]);
+    if (!people[r.person_id]) {
+      const divine = r.kind === "Divine";
+      people[r.person_id] = { name: r.name, divine, color: divine ? null : nextColor++ % PALETTE_SIZE };
     }
   }
-  return { spans, people: chapterPeople };
+  return { spans, people };
 }
-
-const nameOf = (id: string) => id.split("@")[0].split("|")[0].replace(/_/g, " ");
 
 function ref(b: number, chapter: number, verse: number): Ref {
   return { book: BOOKS[b].slug, bookName: BOOKS[b].name, chapter, verse };
@@ -144,23 +85,35 @@ function snippet(text: string, max = 110) {
   return `${cut.slice(0, cut.lastIndexOf(" "))}…`;
 }
 
+type Pos = [number, number, number];
+const cmp = (a: Pos, b: Pos) => a[0] - b[0] || a[1] - b[1] || a[2] - b[2];
+const RELATION_ORDER = ["parent", "sibling", "partner", "child"];
+const RELATION_LABEL: Record<string, string> = { parent: "parent", sibling: "sibling", partner: "spouse", child: "child" };
+
 export async function getPersonCard(id: string, at: { book: string; chapter: number; verse: number }, whole: boolean): Promise<PersonCard | null> {
-  const [people, index] = await Promise.all([loadPeople(), loadIndex()]);
-  const p = people.get(id);
-  const atBook = BOOKS.findIndex((b) => b.slug === at.book);
-  if (!p || atBook < 0) return null;
-  const divine = p.type === "Divine";
-  const pos: [number, number, number] = [atBook, at.chapter, at.verse];
-  const before = (x: [number, number, number]) =>
-    x[0] < pos[0] || (x[0] === pos[0] && (x[1] < pos[1] || (x[1] === pos[1] && x[2] <= pos[2])));
+  const atBook = bookIndex(at.book);
+  if (atBook < 0) return null;
+  const sql = db();
+  const [personRows, textRows] = await Promise.all([
+    sql.query(`select id, name, kind, description from people where id = $1`, [id]),
+    sql.query(`select kind, body from person_texts where person_id = $1 and lang = $2`, [id, LANG]),
+  ]);
+  const p = personRows[0] as { id: string; name: string; kind: string; description: string } | undefined;
+  if (!p) return null;
+  const texts = Object.fromEntries((textRows as { kind: string; body: string }[]).map((t) => [t.kind, t.body]));
+  const divine = p.kind === "Divine";
+  const pos: Pos = [atBook, at.chapter, at.verse];
+  // Up to and including the verse being read; "earlier" excludes it ("You are here").
+  const before = (x: Pos) => cmp(x, pos) <= 0;
+  const earlier = (x: Pos) => cmp(x, pos) < 0;
 
   const card: PersonCard = {
     id,
     name: p.name,
     kind: divine ? "divine" : "person",
-    pronoun: p.type === "Male" ? "His" : p.type === "Female" ? "Her" : null,
+    pronoun: p.kind === "Male" ? "His" : p.kind === "Female" ? "Her" : null,
     description: p.description,
-    brief: p.brief ?? p.short ?? "",
+    brief: texts.brief ?? texts.short ?? "",
     aliases: [],
     notConfused: [],
     soFar: [],
@@ -171,21 +124,40 @@ export async function getPersonCard(id: string, at: { book: string; chapter: num
   };
   if (divine) return card;
 
-  const mentions = index.get(id) ?? [];
+  const [mentionRows, episodeRows, familyRows, togetherRows, nameRows] = await Promise.all([
+    sql.query(`select book, chapter, verse, start_char, end_char from person_mentions where person_id = $1 and translation = $2`, [id, TRANSLATION]),
+    sql.query(`select book, start_ch, start_v, end_ch, end_v from episodes where person_id = $1`, [id]),
+    sql.query(
+      `select r.related_id, r.relation, p.id as known_id, p.name as known_name
+         from relationships r left join people p on p.id = r.related_id
+        where r.person_id = $1`,
+      [id],
+    ),
+    // People named in the same verses so far (data, not AI).
+    sql.query(
+      `select m2.person_id, p.name, count(distinct (m2.book, m2.chapter, m2.verse))::int as verses
+         from person_mentions m1
+         join person_mentions m2 on m2.translation = m1.translation and m2.book = m1.book
+                                and m2.chapter = m1.chapter and m2.verse = m1.verse and m2.person_id <> m1.person_id
+         join people p on p.id = m2.person_id and p.kind <> 'Divine'
+        where m1.person_id = $1 and m1.translation = $2
+          and ($3 or (array_position($4::text[], m1.book) - 1, m1.chapter, m1.verse) <= ($5::int, $6::int, $7::int))
+        group by 1, 2 order by verses desc, 2 limit 10`,
+      [id, TRANSLATION, whole, BOOK_SLUGS, atBook, at.chapter, at.verse],
+    ),
+    sql.query(`select count(*)::int as n from person_names where person_id = $1 and translation = $2`, [id, TRANSLATION]),
+  ]);
 
-  // Episodes: runs of mentions in one chapter, at most EPISODE_GAP verses apart.
-  const episodes: { start: [number, number, number]; end: [number, number, number] }[] = [];
-  for (const m of mentions) {
-    const run = episodes.at(-1);
-    if (run && run.end[0] === m[0] && run.end[1] === m[1] && m[2] - run.end[2] <= EPISODE_GAP) run.end = m;
-    else episodes.push({ start: m, end: m });
-  }
-  // "So far" is what came before this verse; the verse itself is "You are here".
-  const earlier = (x: [number, number, number]) => before(x) && !(x[0] === pos[0] && x[1] === pos[1] && x[2] === pos[2]);
+  const mentions = (mentionRows as { book: string; chapter: number; verse: number; start_char: number; end_char: number }[])
+    .map((m) => ({ pos: [bookIndex(m.book), m.chapter, m.verse] as Pos, start: m.start_char, end: m.end_char }))
+    .sort((a, b) => cmp(a.pos, b.pos) || a.start - b.start);
+
+  const episodes = (episodeRows as { book: string; start_ch: number; start_v: number; end_ch: number; end_v: number }[])
+    .map((e) => ({ start: [bookIndex(e.book), e.start_ch, e.start_v] as Pos, end: [bookIndex(e.book), e.end_ch, e.end_v] as Pos }))
+    .sort((a, b) => cmp(a.start, b.start));
   const visible = whole ? episodes : episodes.filter((e) => earlier(e.start));
-  card.laterCount = episodes.length - episodes.filter((e) => earlier(e.start)).length;
-  const newestFirst = [...visible].reverse();
-  for (const e of newestFirst) {
+  card.laterCount = episodes.filter((e) => !earlier(e.start)).length;
+  for (const e of [...visible].reverse()) {
     const end = !whole && !before(e.end) ? pos : e.end;
     const verses = await getChapter(BOOKS[e.start[0]].slug, e.start[1]);
     card.soFar.push({
@@ -200,54 +172,44 @@ export async function getPersonCard(id: string, at: { book: string; chapter: num
     });
   }
 
-  // Name forms and where each first appears, from the tagged text.
+  // Name forms as written in the text, and where each first appears.
   const forms = new Map<string, Ref>();
+  const formCount = (nameRows[0] as { n: number }).n;
   for (const m of mentions) {
-    if (forms.size === (p.names?.length ?? 0)) break;
-    const verses = await getChapter(BOOKS[m[0]].slug, m[1]);
-    const spans = (await loadMentions(BOOKS[m[0]].slug))[`${m[1]}:${m[2]}`] ?? [];
-    for (const [s, e, pid] of spans) {
-      const form = verses?.[m[2] - 1]?.slice(s, e);
-      if (pid === id && form && !forms.has(form)) forms.set(form, ref(m[0], m[1], m[2]));
-    }
+    if (forms.size >= formCount) break;
+    const verses = await getChapter(BOOKS[m.pos[0]].slug, m.pos[1]);
+    const form = verses?.[m.pos[2] - 1]?.slice(m.start, m.end);
+    if (form && !forms.has(form)) forms.set(form, ref(...m.pos));
   }
   card.aliases = [...forms].map(([form, first]) => ({ form, first }));
 
   // Other people who share a name form, most-mentioned first.
-  const shared = new Set(forms.keys());
-  const others: { link: PersonLink; count: number }[] = [];
-  for (const other of people.values()) {
-    if (other.id === id || other.type === "Divine" || !other.names?.some((n) => shared.has(n))) continue;
-    others.push({ link: { id: other.id, name: other.name, note: other.brief ?? other.description }, count: index.get(other.id)?.length ?? 0 });
-  }
-  card.notConfused = others.sort((a, b) => b.count - a.count).slice(0, 4).map((o) => o.link);
-
-  for (const [relation, list] of [
-    ["parent", p.parents],
-    ["sibling", p.siblings],
-    ["spouse", p.partners],
-    ["child", p.offspring],
-  ] as const) {
-    for (const rid of new Set(list ?? [])) {
-      card.family.push({ id: people.has(rid) ? rid : null, name: nameOf(rid), note: relation });
-    }
+  if (forms.size) {
+    const others = (await sql.query(
+      `select p.id, p.name, coalesce(t.body, p.description) as note,
+              (select count(*) from person_mentions m where m.person_id = p.id)::int as mentions
+         from people p left join person_texts t on t.person_id = p.id and t.kind = 'brief' and t.lang = $3
+        where p.id <> $1 and p.kind <> 'Divine'
+          and exists (select 1 from person_names n where n.person_id = p.id and n.form = any($2::text[]))
+        order by mentions desc limit 4`,
+      [id, [...forms.keys()], LANG],
+    )) as { id: string; name: string; note: string }[];
+    card.notConfused = others.map((o) => ({ id: o.id, name: o.name, note: o.note }));
   }
 
-  // People named in the same verses so far (data, not AI).
-  const together = new Map<string, number>();
-  for (const m of mentions) {
-    if (!whole && !before(m)) break;
-    const spans = (await loadMentions(BOOKS[m[0]].slug))[`${m[1]}:${m[2]}`] ?? [];
-    for (const pid of new Set(spans.map((s) => s[2]))) {
-      if (pid !== id && !pid.startsWith("divine:")) together.set(pid, (together.get(pid) ?? 0) + 1);
-    }
-  }
+  const family = familyRows as { related_id: string; relation: string; known_id: string | null; known_name: string | null }[];
+  family.sort((a, b) => RELATION_ORDER.indexOf(a.relation) - RELATION_ORDER.indexOf(b.relation));
+  card.family = family.map((f) => ({
+    id: f.known_id,
+    name: f.known_name ?? f.related_id.split("@")[0].split("|")[0].replace(/_/g, " "),
+    note: RELATION_LABEL[f.relation] ?? f.relation,
+  }));
+
   const familyIds = new Set(card.family.map((f) => f.id));
-  card.appearsWith = [...together]
-    .filter(([pid]) => !familyIds.has(pid) && people.get(pid)?.type !== "Divine")
-    .sort((a, b) => b[1] - a[1])
+  card.appearsWith = (togetherRows as { person_id: string; name: string; verses: number }[])
+    .filter((t) => !familyIds.has(t.person_id))
     .slice(0, 5)
-    .map(([pid, count]) => ({ id: pid, name: people.get(pid)?.name ?? nameOf(pid), note: `${count} ${count === 1 ? "verse" : "verses"} together` }));
+    .map((t) => ({ id: t.person_id, name: t.name, note: `${t.verses} ${t.verses === 1 ? "verse" : "verses"} together` }));
 
   return card;
 }
