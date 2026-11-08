@@ -2,7 +2,7 @@
 
 In priority order.
 
-1. **Shared rate limiting**: `/api/v1` has a per-IP limiter, but it lives in each server instance's memory (limit x instances). Move it to a shared store or Vercel's firewall before a public deploy.
+1. **Shared rate limiting for the read endpoints**: `POST /api/v1/context` is covered by a Vercel firewall rule (10/min per IP, answers 429), but `person`, `books` and the chapter endpoint still use the per-instance in-memory limiter (limit x instances). Extend the firewall rule or move them to a shared store. The firewall's 429 body is Vercel's, not our `rate_limited` error shape; document that for native clients.
 2. **Faster person cards**: a card makes ~7 database round trips (about 1.2 s from the dev sandbox); fold them into fewer queries or cache cards per (person, position).
 3. **Grounding with real sources:** retrieve from public-domain lexicons and reference works and cite them, instead of relying on the model's memory.
 4. **Eval set:** 30-50 passages with known facts and common pitfalls (dates, Strong's numbers, attributions); run it whenever the prompt changes.
