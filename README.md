@@ -32,10 +32,10 @@ Open http://localhost:3000.
 | Book list and chapter loading | `src/lib/bible.ts` |
 | Context schema (shared by API and UI) | `src/lib/context-schema.ts` |
 | Prompt, Claude call, cache | `src/lib/context.ts` |
-| API: `POST /api/context` `{ book, chapter, start, end }` | `src/app/api/context/route.ts` |
+| API v1 (`/api/v1`): `books`, `books/{book}/chapters/{n}`, `person`, `POST context`, `schema` | `src/app/api/v1/`, helpers in `src/lib/api.ts` |
 | Reader and context panel | `src/app/read/[book]/[chapter]/page.tsx`, `src/components/` |
 
-The server looks up the verse text itself and sends the whole chapter to Claude, with the selected verses marked, so the model sees the surrounding text. Results are cached in memory per passage. See `docs/DESIGN.md` for the reasoning and `TODOS.md` for what's next.
+The server looks up the verse text itself and sends the whole chapter to Claude, with the selected verses marked, so the model sees the surrounding text. Results are cached per passage in Postgres. See `docs/DESIGN.md` for the reasoning and `TODOS.md` for what's next.
 
 ## Regenerating the Bible data
 
