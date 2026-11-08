@@ -125,13 +125,13 @@ export function ChapterReader({ bookSlug, bookName, chapter, verses, people, ini
     const reference = `${bookName} ${chapter}:${r.start === r.end ? r.start : `${r.start}-${r.end}`}`;
     setContexts((c) => ({ ...c, [key]: { status: "loading", reference } }));
     try {
-      const res = await fetch("/api/context", {
+      const res = await fetch("/api/v1/context", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ book: bookSlug, chapter, ...r }),
       });
       const body = await res.json();
-      if (!res.ok) throw new Error(body.error ?? `Request failed (${res.status})`);
+      if (!res.ok) throw new Error(body.error?.message ?? `Request failed (${res.status})`);
       setContexts((c) => ({ ...c, [key]: { status: "done", reference, context: body.context } }));
     } catch (error) {
       setContexts((c) => ({ ...c, [key]: { status: "error", reference, message: error instanceof Error ? error.message : String(error) } }));

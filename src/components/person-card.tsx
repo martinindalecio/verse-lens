@@ -24,9 +24,9 @@ function fetchCard(id: string, at: Props["at"], whole: boolean) {
   if (!pending) {
     const query = new URLSearchParams({ id, at: `${at.book}.${at.chapter}.${at.verse}` });
     if (whole) query.set("all", "1");
-    pending = fetch(`/api/person?${query}`).then(async (res) => {
+    pending = fetch(`/api/v1/person?${query}`).then(async (res) => {
       const body = await res.json();
-      if (!res.ok) throw new Error(body.error ?? `Request failed (${res.status})`);
+      if (!res.ok) throw new Error(body.error?.message ?? `Request failed (${res.status})`);
       return body.card as Card;
     });
     pending.catch(() => cache.delete(key));

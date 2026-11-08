@@ -2,7 +2,7 @@
 
 In priority order.
 
-1. **Rate limiting** on `POST /api/context` before any public deploy (it spends API credits).
+1. **Shared rate limiting**: `/api/v1` has a per-IP limiter, but it lives in each server instance's memory (limit x instances). Move it to a shared store or Vercel's firewall before a public deploy.
 2. **Faster person cards**: a card makes ~7 database round trips (about 1.2 s from the dev sandbox); fold them into fewer queries or cache cards per (person, position).
 3. **Grounding with real sources:** retrieve from public-domain lexicons and reference works and cite them, instead of relying on the model's memory.
 4. **Eval set:** 30-50 passages with known facts and common pitfalls (dates, Strong's numbers, attributions); run it whenever the prompt changes.
