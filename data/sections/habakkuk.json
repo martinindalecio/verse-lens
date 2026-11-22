@@ -1,0 +1,95 @@
+[
+ {
+  "title": "Habakkuk’s First Complaint",
+  "start": [
+   1,
+   1
+  ],
+  "end": [
+   1,
+   4
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The LORD’s Answer",
+  "start": [
+   1,
+   5
+  ],
+  "end": [
+   1,
+   11
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Habakkuk’s Second Complaint",
+  "start": [
+   1,
+   12
+  ],
+  "end": [
+   1,
+   17
+  ],
+  "parallels": [
+   "Psalms 11:1–7"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "The LORD Answers Again",
+  "start": [
+   2,
+   1
+  ],
+  "end": [
+   2,
+   5
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Woe to the Chaldeans",
+  "start": [
+   2,
+   6
+  ],
+  "end": [
+   2,
+   20
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Habakkuk’s Prayer",
+  "start": [
+   3,
+   1
+  ],
+  "end": [
+   3,
+   16
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Habakkuk Rejoices",
+  "start": [
+   3,
+   17
+  ],
+  "end": [
+   3,
+   19
+  ],
+  "parallels": [],
+  "subheadings": []
+ }
+]

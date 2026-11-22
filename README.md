@@ -29,6 +29,7 @@ Open http://localhost:3000.
 | Piece | Where |
 | --- | --- |
 | Bible text, one JSON file per book | `data/bsb/` (built by `scripts/build-bible.py`) |
+| BSB section headings and parallel passages, one JSON file per book | `data/sections/` (built by `scripts/build-sections.py`) |
 | Book list and chapter loading | `src/lib/bible.ts` |
 | Context schema (shared by API and UI) | `src/lib/context-schema.ts` |
 | Prompt, Claude call, cache | `src/lib/context.ts` |
@@ -42,6 +43,9 @@ The server looks up the verse text itself and sends the whole chapter to Claude,
 ```bash
 curl -LO https://raw.githubusercontent.com/scrollmapper/bible_databases/master/formats/json/BSB.json
 python3 scripts/build-bible.py BSB.json
+
+curl -LO https://ebible.org/Scriptures/engbsb_usfm.zip
+python3 scripts/build-sections.py engbsb_usfm.zip
 ```
 
 Built with Next.js 16 (App Router, Cache Components) and Tailwind CSS 4.

@@ -1,0 +1,386 @@
+[
+ {
+  "title": "Nehemiah’s Prayer",
+  "start": [
+   1,
+   1
+  ],
+  "end": [
+   1,
+   11
+  ],
+  "parallels": [
+   "Deuteronomy 30:1–10"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "Nehemiah Sent to Jerusalem",
+  "start": [
+   2,
+   1
+  ],
+  "end": [
+   2,
+   10
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Nehemiah Inspects the Walls",
+  "start": [
+   2,
+   11
+  ],
+  "end": [
+   2,
+   20
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The Builders of the Walls",
+  "start": [
+   3,
+   1
+  ],
+  "end": [
+   3,
+   32
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The Work Ridiculed",
+  "start": [
+   4,
+   1
+  ],
+  "end": [
+   4,
+   8
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Discouragement Overcome",
+  "start": [
+   4,
+   9
+  ],
+  "end": [
+   4,
+   23
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Nehemiah Defends the Oppressed",
+  "start": [
+   5,
+   1
+  ],
+  "end": [
+   5,
+   13
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Nehemiah’s Generosity",
+  "start": [
+   5,
+   14
+  ],
+  "end": [
+   5,
+   19
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Sanballat’s Conspiracy",
+  "start": [
+   6,
+   1
+  ],
+  "end": [
+   6,
+   14
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Completion of the Wall",
+  "start": [
+   6,
+   15
+  ],
+  "end": [
+   6,
+   19
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Securing the City",
+  "start": [
+   7,
+   1
+  ],
+  "end": [
+   7,
+   3
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The List of Returning Exiles",
+  "start": [
+   7,
+   4
+  ],
+  "end": [
+   7,
+   69
+  ],
+  "parallels": [
+   "Ezra 2:1–67"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "Offerings by the Exiles",
+  "start": [
+   7,
+   70
+  ],
+  "end": [
+   7,
+   73
+  ],
+  "parallels": [
+   "Exodus 38:21–31",
+   "Ezra 2:68–70"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "Ezra Reads the Law",
+  "start": [
+   8,
+   1
+  ],
+  "end": [
+   8,
+   12
+  ],
+  "parallels": [
+   "Deuteronomy 31:9–13"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "The Feast of Tabernacles",
+  "start": [
+   8,
+   13
+  ],
+  "end": [
+   8,
+   18
+  ],
+  "parallels": [
+   "Leviticus 23:33–44",
+   "Zechariah 14:16–21"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "The People Confess Their Sins",
+  "start": [
+   9,
+   1
+  ],
+  "end": [
+   9,
+   38
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Signers of the Covenant",
+  "start": [
+   10,
+   1
+  ],
+  "end": [
+   10,
+   27
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The Vows of the Covenant",
+  "start": [
+   10,
+   28
+  ],
+  "end": [
+   10,
+   39
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Jerusalem’s New Settlers",
+  "start": [
+   11,
+   1
+  ],
+  "end": [
+   11,
+   19
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Residents Outside Jerusalem",
+  "start": [
+   11,
+   20
+  ],
+  "end": [
+   11,
+   36
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The Priests and Levites Who Returned",
+  "start": [
+   12,
+   1
+  ],
+  "end": [
+   12,
+   26
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The Dedication of the Wall",
+  "start": [
+   12,
+   27
+  ],
+  "end": [
+   12,
+   43
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Provisions for Temple Worship",
+  "start": [
+   12,
+   44
+  ],
+  "end": [
+   12,
+   47
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Foreigners Excluded",
+  "start": [
+   13,
+   1
+  ],
+  "end": [
+   13,
+   3
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The Temple Cleansed",
+  "start": [
+   13,
+   4
+  ],
+  "end": [
+   13,
+   9
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Tithes Restored",
+  "start": [
+   13,
+   10
+  ],
+  "end": [
+   13,
+   14
+  ],
+  "parallels": [
+   "Leviticus 27:30–34",
+   "Deuteronomy 14:22–29",
+   "Deuteronomy 26:1–15"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "The Sabbath Restored",
+  "start": [
+   13,
+   15
+  ],
+  "end": [
+   13,
+   22
+  ],
+  "parallels": [
+   "Jeremiah 17:19–27"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "Intermarriage Forbidden",
+  "start": [
+   13,
+   23
+  ],
+  "end": [
+   13,
+   31
+  ],
+  "parallels": [
+   "Ezra 9:1–4"
+  ],
+  "subheadings": []
+ }
+]

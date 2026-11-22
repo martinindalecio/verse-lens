@@ -1,0 +1,1923 @@
+[
+ {
+  "title": "The Creation",
+  "start": [
+   1,
+   1
+  ],
+  "end": [
+   1,
+   31
+  ],
+  "parallels": [
+   "John 1:1–5",
+   "Hebrews 11:1–3"
+  ],
+  "subheadings": [
+   {
+    "title": "The First Day",
+    "start": [
+     1,
+     3
+    ]
+   },
+   {
+    "title": "The Second Day",
+    "start": [
+     1,
+     6
+    ]
+   },
+   {
+    "title": "The Third Day",
+    "start": [
+     1,
+     9
+    ]
+   },
+   {
+    "title": "The Fourth Day",
+    "start": [
+     1,
+     14
+    ]
+   },
+   {
+    "title": "The Fifth Day",
+    "start": [
+     1,
+     20
+    ]
+   },
+   {
+    "title": "The Sixth Day",
+    "start": [
+     1,
+     24
+    ]
+   }
+  ]
+ },
+ {
+  "title": "The Seventh Day",
+  "start": [
+   2,
+   1
+  ],
+  "end": [
+   2,
+   3
+  ],
+  "parallels": [
+   "Exodus 16:22–30",
+   "Hebrews 4:1–11"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "Man and Woman in the Garden",
+  "start": [
+   2,
+   4
+  ],
+  "end": [
+   2,
+   25
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The Serpent’s Deception",
+  "start": [
+   3,
+   1
+  ],
+  "end": [
+   3,
+   7
+  ],
+  "parallels": [
+   "Romans 5:12–21"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "God Arraigns Adam and Eve",
+  "start": [
+   3,
+   8
+  ],
+  "end": [
+   3,
+   13
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The Fate of the Serpent",
+  "start": [
+   3,
+   14
+  ],
+  "end": [
+   3,
+   15
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The Punishment of Mankind",
+  "start": [
+   3,
+   16
+  ],
+  "end": [
+   3,
+   20
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The Expulsion from Paradise",
+  "start": [
+   3,
+   21
+  ],
+  "end": [
+   3,
+   24
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Cain and Abel",
+  "start": [
+   4,
+   1
+  ],
+  "end": [
+   4,
+   16
+  ],
+  "parallels": [
+   "Hebrews 11:4"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "The Descendants of Cain",
+  "start": [
+   4,
+   17
+  ],
+  "end": [
+   4,
+   24
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Seth and Enosh",
+  "start": [
+   4,
+   25
+  ],
+  "end": [
+   4,
+   26
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The Descendants of Adam",
+  "start": [
+   5,
+   1
+  ],
+  "end": [
+   5,
+   17
+  ],
+  "parallels": [
+   "1 Chronicles 1:1–3"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "God Takes Up Enoch",
+  "start": [
+   5,
+   18
+  ],
+  "end": [
+   5,
+   24
+  ],
+  "parallels": [
+   "Hebrews 11:5"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "From Methuselah to Noah",
+  "start": [
+   5,
+   25
+  ],
+  "end": [
+   5,
+   32
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Corruption on the Earth",
+  "start": [
+   6,
+   1
+  ],
+  "end": [
+   6,
+   7
+  ],
+  "parallels": [
+   "Matthew 24:36–51"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "Noah’s Favor with God",
+  "start": [
+   6,
+   8
+  ],
+  "end": [
+   6,
+   12
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Preparing the Ark",
+  "start": [
+   6,
+   13
+  ],
+  "end": [
+   6,
+   22
+  ],
+  "parallels": [
+   "Hebrews 11:7"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "The Great Flood",
+  "start": [
+   7,
+   1
+  ],
+  "end": [
+   7,
+   24
+  ],
+  "parallels": [
+   "2 Peter 3:1–7"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "The Ark Rests on Ararat",
+  "start": [
+   8,
+   1
+  ],
+  "end": [
+   8,
+   5
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Noah Sends a Raven and a Dove",
+  "start": [
+   8,
+   6
+  ],
+  "end": [
+   8,
+   12
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Exiting the Ark",
+  "start": [
+   8,
+   13
+  ],
+  "end": [
+   8,
+   19
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Noah Builds an Altar",
+  "start": [
+   8,
+   20
+  ],
+  "end": [
+   8,
+   22
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The Covenant of the Rainbow",
+  "start": [
+   9,
+   1
+  ],
+  "end": [
+   9,
+   17
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Noah’s Shame and Canaan’s Curse",
+  "start": [
+   9,
+   18
+  ],
+  "end": [
+   9,
+   25
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Shem’s Blessing and Noah’s Death",
+  "start": [
+   9,
+   26
+  ],
+  "end": [
+   9,
+   29
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The Table of Nations",
+  "start": [
+   10,
+   1
+  ],
+  "end": [
+   10,
+   32
+  ],
+  "parallels": [
+   "1 Chronicles 1:4–27"
+  ],
+  "subheadings": [
+   {
+    "title": "The Japhethites",
+    "start": [
+     10,
+     2
+    ]
+   },
+   {
+    "title": "The Hamites",
+    "start": [
+     10,
+     6
+    ]
+   },
+   {
+    "title": "The Semites",
+    "start": [
+     10,
+     21
+    ]
+   }
+  ]
+ },
+ {
+  "title": "The Tower of Babel",
+  "start": [
+   11,
+   1
+  ],
+  "end": [
+   11,
+   9
+  ],
+  "parallels": [
+   "Deuteronomy 32:8",
+   "Acts 2:1–13"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "Genealogy from Shem to Abram",
+  "start": [
+   11,
+   10
+  ],
+  "end": [
+   11,
+   26
+  ],
+  "parallels": [
+   "1 Chronicles 1:17–27"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "Terah’s Descendants",
+  "start": [
+   11,
+   27
+  ],
+  "end": [
+   11,
+   32
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The Call of Abram",
+  "start": [
+   12,
+   1
+  ],
+  "end": [
+   12,
+   9
+  ],
+  "parallels": [
+   "Genesis 26:1–5",
+   "Acts 7:1–8"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "Abram and Sarai in Egypt",
+  "start": [
+   12,
+   10
+  ],
+  "end": [
+   12,
+   20
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Abram and Lot Part Ways",
+  "start": [
+   13,
+   1
+  ],
+  "end": [
+   13,
+   9
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Lot Proceeds toward Sodom",
+  "start": [
+   13,
+   10
+  ],
+  "end": [
+   13,
+   13
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "God Renews the Promise to Abram",
+  "start": [
+   13,
+   14
+  ],
+  "end": [
+   13,
+   18
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The War of the Kings",
+  "start": [
+   14,
+   1
+  ],
+  "end": [
+   14,
+   9
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Abram Rescues Lot",
+  "start": [
+   14,
+   10
+  ],
+  "end": [
+   14,
+   16
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Melchizedek Blesses Abram",
+  "start": [
+   14,
+   17
+  ],
+  "end": [
+   14,
+   24
+  ],
+  "parallels": [
+   "Psalms 110:1–7",
+   "Hebrews 7:1–10"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "God’s Covenant with Abram",
+  "start": [
+   15,
+   1
+  ],
+  "end": [
+   15,
+   7
+  ],
+  "parallels": [
+   "Romans 4:1–12",
+   "Hebrews 11:8–19"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "God Confirms His Promise",
+  "start": [
+   15,
+   8
+  ],
+  "end": [
+   15,
+   21
+  ],
+  "parallels": [
+   "Numbers 34:1–15",
+   "Romans 4:13–25"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "Hagar and Ishmael",
+  "start": [
+   16,
+   1
+  ],
+  "end": [
+   16,
+   16
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Abraham to Father Many Nations",
+  "start": [
+   17,
+   1
+  ],
+  "end": [
+   17,
+   8
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The Covenant of Circumcision",
+  "start": [
+   17,
+   9
+  ],
+  "end": [
+   17,
+   27
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The Three Visitors",
+  "start": [
+   18,
+   1
+  ],
+  "end": [
+   18,
+   8
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Sarah Laughs at the Promise",
+  "start": [
+   18,
+   9
+  ],
+  "end": [
+   18,
+   15
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Abraham Intercedes for Sodom",
+  "start": [
+   18,
+   16
+  ],
+  "end": [
+   18,
+   33
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Lot Welcomes the Angels",
+  "start": [
+   19,
+   1
+  ],
+  "end": [
+   19,
+   11
+  ],
+  "parallels": [
+   "Judges 19:1–30"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "Lot Flees to Zoar",
+  "start": [
+   19,
+   12
+  ],
+  "end": [
+   19,
+   23
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The Destruction of Sodom and Gomorrah",
+  "start": [
+   19,
+   24
+  ],
+  "end": [
+   19,
+   29
+  ],
+  "parallels": [
+   "Luke 17:20–37"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "Lot and His Daughters",
+  "start": [
+   19,
+   30
+  ],
+  "end": [
+   19,
+   38
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Abraham, Sarah, and Abimelech",
+  "start": [
+   20,
+   1
+  ],
+  "end": [
+   20,
+   18
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The Birth of Isaac",
+  "start": [
+   21,
+   1
+  ],
+  "end": [
+   21,
+   8
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Sarah Turns against Hagar",
+  "start": [
+   21,
+   9
+  ],
+  "end": [
+   21,
+   21
+  ],
+  "parallels": [
+   "Galatians 4:21–30"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "The Covenant at Beersheba",
+  "start": [
+   21,
+   22
+  ],
+  "end": [
+   21,
+   34
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The Offering of Isaac",
+  "start": [
+   22,
+   1
+  ],
+  "end": [
+   22,
+   10
+  ],
+  "parallels": [
+   "John 3:1–21"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "The LORD Provides the Sacrifice",
+  "start": [
+   22,
+   11
+  ],
+  "end": [
+   22,
+   19
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The Sons of Nahor",
+  "start": [
+   22,
+   20
+  ],
+  "end": [
+   22,
+   24
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The Death and Burial of Sarah",
+  "start": [
+   23,
+   1
+  ],
+  "end": [
+   23,
+   20
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "A Wife for Isaac",
+  "start": [
+   24,
+   1
+  ],
+  "end": [
+   24,
+   14
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Rebekah Is Chosen",
+  "start": [
+   24,
+   15
+  ],
+  "end": [
+   24,
+   61
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Isaac Marries Rebekah",
+  "start": [
+   24,
+   62
+  ],
+  "end": [
+   24,
+   67
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Abraham and Keturah",
+  "start": [
+   25,
+   1
+  ],
+  "end": [
+   25,
+   6
+  ],
+  "parallels": [
+   "1 Chronicles 1:32–33"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "The Death of Abraham",
+  "start": [
+   25,
+   7
+  ],
+  "end": [
+   25,
+   11
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The Descendants of Ishmael",
+  "start": [
+   25,
+   12
+  ],
+  "end": [
+   25,
+   18
+  ],
+  "parallels": [
+   "1 Chronicles 1:28–31"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "Jacob and Esau",
+  "start": [
+   25,
+   19
+  ],
+  "end": [
+   25,
+   28
+  ],
+  "parallels": [
+   "Malachi 1:1–5",
+   "Romans 9:6–29"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "Esau Sells His Birthright",
+  "start": [
+   25,
+   29
+  ],
+  "end": [
+   25,
+   34
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "God’s Promise to Isaac",
+  "start": [
+   26,
+   1
+  ],
+  "end": [
+   26,
+   5
+  ],
+  "parallels": [
+   "Genesis 12:1–9"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "Isaac Deceives Abimelech",
+  "start": [
+   26,
+   6
+  ],
+  "end": [
+   26,
+   11
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Isaac’s Prosperity",
+  "start": [
+   26,
+   12
+  ],
+  "end": [
+   26,
+   25
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Isaac’s Covenant with Abimelech",
+  "start": [
+   26,
+   26
+  ],
+  "end": [
+   26,
+   33
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Esau’s Wives",
+  "start": [
+   26,
+   34
+  ],
+  "end": [
+   26,
+   35
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Isaac Blesses Jacob",
+  "start": [
+   27,
+   1
+  ],
+  "end": [
+   27,
+   29
+  ],
+  "parallels": [
+   "Hebrews 11:20"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "Esau’s Lost Hope",
+  "start": [
+   27,
+   30
+  ],
+  "end": [
+   27,
+   46
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Jacob’s Departure",
+  "start": [
+   28,
+   1
+  ],
+  "end": [
+   28,
+   5
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Esau Marries Mahalath",
+  "start": [
+   28,
+   6
+  ],
+  "end": [
+   28,
+   9
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Jacob’s Ladder",
+  "start": [
+   28,
+   10
+  ],
+  "end": [
+   28,
+   17
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The Stone of Bethel",
+  "start": [
+   28,
+   18
+  ],
+  "end": [
+   28,
+   22
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Jacob Meets Rachel",
+  "start": [
+   29,
+   1
+  ],
+  "end": [
+   29,
+   13
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Jacob Marries Leah and Rachel",
+  "start": [
+   29,
+   14
+  ],
+  "end": [
+   29,
+   30
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Reuben, Simeon, Levi, and Judah",
+  "start": [
+   29,
+   31
+  ],
+  "end": [
+   29,
+   35
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Dan and Naphtali",
+  "start": [
+   30,
+   1
+  ],
+  "end": [
+   30,
+   8
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Gad and Asher",
+  "start": [
+   30,
+   9
+  ],
+  "end": [
+   30,
+   16
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Issachar, Zebulun, and Dinah",
+  "start": [
+   30,
+   17
+  ],
+  "end": [
+   30,
+   21
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Joseph",
+  "start": [
+   30,
+   22
+  ],
+  "end": [
+   30,
+   24
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Jacob Prospers",
+  "start": [
+   30,
+   25
+  ],
+  "end": [
+   30,
+   43
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Jacob Flees from Laban",
+  "start": [
+   31,
+   1
+  ],
+  "end": [
+   31,
+   21
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Laban Pursues Jacob",
+  "start": [
+   31,
+   22
+  ],
+  "end": [
+   31,
+   42
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Jacob’s Covenant with Laban",
+  "start": [
+   31,
+   43
+  ],
+  "end": [
+   31,
+   55
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Jacob Prepares to Meet Esau",
+  "start": [
+   32,
+   1
+  ],
+  "end": [
+   32,
+   21
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Jacob Wrestles with God",
+  "start": [
+   32,
+   22
+  ],
+  "end": [
+   32,
+   32
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Jacob Meets Esau",
+  "start": [
+   33,
+   1
+  ],
+  "end": [
+   33,
+   17
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Jacob Settles in Shechem",
+  "start": [
+   33,
+   18
+  ],
+  "end": [
+   33,
+   20
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The Defiling of Dinah",
+  "start": [
+   34,
+   1
+  ],
+  "end": [
+   34,
+   12
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The Revenge of Dinah’s Brothers",
+  "start": [
+   34,
+   13
+  ],
+  "end": [
+   34,
+   31
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Jacob Returns to Bethel",
+  "start": [
+   35,
+   1
+  ],
+  "end": [
+   35,
+   15
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Benjamin Born, Rachel Dies",
+  "start": [
+   35,
+   16
+  ],
+  "end": [
+   35,
+   20
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The Sons of Jacob",
+  "start": [
+   35,
+   21
+  ],
+  "end": [
+   35,
+   26
+  ],
+  "parallels": [
+   "1 Chronicles 2:1–2"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "The Death of Isaac",
+  "start": [
+   35,
+   27
+  ],
+  "end": [
+   35,
+   29
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The Descendants of Esau",
+  "start": [
+   36,
+   1
+  ],
+  "end": [
+   36,
+   19
+  ],
+  "parallels": [
+   "1 Chronicles 1:35–37"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "The Descendants of Seir",
+  "start": [
+   36,
+   20
+  ],
+  "end": [
+   36,
+   30
+  ],
+  "parallels": [
+   "1 Chronicles 1:38–42"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "The Kings of Edom",
+  "start": [
+   36,
+   31
+  ],
+  "end": [
+   36,
+   43
+  ],
+  "parallels": [
+   "1 Chronicles 1:43–54"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "Joseph’s Dreams",
+  "start": [
+   37,
+   1
+  ],
+  "end": [
+   37,
+   11
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Joseph Sold into Egypt",
+  "start": [
+   37,
+   12
+  ],
+  "end": [
+   37,
+   30
+  ],
+  "parallels": [
+   "Acts 7:9–14"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "Jacob Mourns Joseph",
+  "start": [
+   37,
+   31
+  ],
+  "end": [
+   37,
+   36
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Judah and Tamar",
+  "start": [
+   38,
+   1
+  ],
+  "end": [
+   38,
+   26
+  ],
+  "parallels": [
+   "1 Chronicles 2:3–4"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "The Birth of Perez and Zerah",
+  "start": [
+   38,
+   27
+  ],
+  "end": [
+   38,
+   30
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Joseph and Potiphar’s Wife",
+  "start": [
+   39,
+   1
+  ],
+  "end": [
+   39,
+   12
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Joseph Falsely Imprisoned",
+  "start": [
+   39,
+   13
+  ],
+  "end": [
+   39,
+   23
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The Cupbearer and the Baker",
+  "start": [
+   40,
+   1
+  ],
+  "end": [
+   40,
+   23
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The Dreams of Pharaoh",
+  "start": [
+   41,
+   1
+  ],
+  "end": [
+   41,
+   13
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Joseph Interprets Pharaoh’s Dreams",
+  "start": [
+   41,
+   14
+  ],
+  "end": [
+   41,
+   36
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Joseph Given Charge of Egypt",
+  "start": [
+   41,
+   37
+  ],
+  "end": [
+   41,
+   45
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The Seven Years of Plenty",
+  "start": [
+   41,
+   46
+  ],
+  "end": [
+   41,
+   52
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The Famine Begins",
+  "start": [
+   41,
+   53
+  ],
+  "end": [
+   41,
+   57
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Joseph’s Brothers Sent to Egypt",
+  "start": [
+   42,
+   1
+  ],
+  "end": [
+   42,
+   24
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Joseph’s Brothers Return to Canaan",
+  "start": [
+   42,
+   25
+  ],
+  "end": [
+   42,
+   38
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The Return to Egypt with Benjamin",
+  "start": [
+   43,
+   1
+  ],
+  "end": [
+   43,
+   15
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Joseph’s Hospitality to His Brothers",
+  "start": [
+   43,
+   16
+  ],
+  "end": [
+   43,
+   34
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Benjamin and the Silver Cup",
+  "start": [
+   44,
+   1
+  ],
+  "end": [
+   44,
+   17
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Judah Pleads for Benjamin",
+  "start": [
+   44,
+   18
+  ],
+  "end": [
+   44,
+   34
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Joseph Reveals His Identity",
+  "start": [
+   45,
+   1
+  ],
+  "end": [
+   45,
+   8
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Joseph Sends for His Father",
+  "start": [
+   45,
+   9
+  ],
+  "end": [
+   45,
+   15
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Pharaoh Invites Jacob to Egypt",
+  "start": [
+   45,
+   16
+  ],
+  "end": [
+   45,
+   24
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The Revival of Jacob",
+  "start": [
+   45,
+   25
+  ],
+  "end": [
+   45,
+   28
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Jacob’s Journey to Egypt",
+  "start": [
+   46,
+   1
+  ],
+  "end": [
+   46,
+   6
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Those Who Went to Egypt",
+  "start": [
+   46,
+   7
+  ],
+  "end": [
+   46,
+   27
+  ],
+  "parallels": [
+   "Exodus 1:1–7"
+  ],
+  "subheadings": [
+   {
+    "title": "The Children of Leah",
+    "start": [
+     46,
+     8
+    ]
+   },
+   {
+    "title": "The Children of Zilpah",
+    "start": [
+     46,
+     16
+    ]
+   },
+   {
+    "title": "The Children of Rachel",
+    "start": [
+     46,
+     19
+    ]
+   },
+   {
+    "title": "The Children of Bilhah",
+    "start": [
+     46,
+     23
+    ]
+   }
+  ]
+ },
+ {
+  "title": "Jacob Arrives in Egypt",
+  "start": [
+   46,
+   28
+  ],
+  "end": [
+   46,
+   34
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Jacob Settles in Goshen",
+  "start": [
+   47,
+   1
+  ],
+  "end": [
+   47,
+   12
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The Famine Continues",
+  "start": [
+   47,
+   13
+  ],
+  "end": [
+   47,
+   26
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The Israelites Prosper in Goshen",
+  "start": [
+   47,
+   27
+  ],
+  "end": [
+   47,
+   31
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Jacob Blesses Ephraim and Manasseh",
+  "start": [
+   48,
+   1
+  ],
+  "end": [
+   48,
+   22
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Jacob Blesses His Sons",
+  "start": [
+   49,
+   1
+  ],
+  "end": [
+   49,
+   28
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The Death of Jacob",
+  "start": [
+   49,
+   29
+  ],
+  "end": [
+   49,
+   33
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Mourning and Burial for Jacob",
+  "start": [
+   50,
+   1
+  ],
+  "end": [
+   50,
+   14
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Joseph Comforts His Brothers",
+  "start": [
+   50,
+   15
+  ],
+  "end": [
+   50,
+   21
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The Death of Joseph",
+  "start": [
+   50,
+   22
+  ],
+  "end": [
+   50,
+   26
+  ],
+  "parallels": [],
+  "subheadings": []
+ }
+]

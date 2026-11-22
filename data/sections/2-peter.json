@@ -1,0 +1,108 @@
+[
+ {
+  "title": "A Greeting from Peter",
+  "start": [
+   1,
+   1
+  ],
+  "end": [
+   1,
+   2
+  ],
+  "parallels": [
+   "1 Peter 1:1–2"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "Partakers of the Divine Nature",
+  "start": [
+   1,
+   3
+  ],
+  "end": [
+   1,
+   15
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Eyewitnesses of His Majesty",
+  "start": [
+   1,
+   16
+  ],
+  "end": [
+   1,
+   21
+  ],
+  "parallels": [
+   "Matthew 17:1–13",
+   "Mark 9:1–13",
+   "Luke 9:28–36"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "Deliverance from False Prophets",
+  "start": [
+   2,
+   1
+  ],
+  "end": [
+   2,
+   22
+  ],
+  "parallels": [
+   "Jude 1:3–16"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "The Coming Judgment",
+  "start": [
+   3,
+   1
+  ],
+  "end": [
+   3,
+   7
+  ],
+  "parallels": [
+   "Genesis 7:1–24",
+   "Jude 1:17–23"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "The Day of the Lord",
+  "start": [
+   3,
+   8
+  ],
+  "end": [
+   3,
+   13
+  ],
+  "parallels": [
+   "Zephaniah 1:7–18",
+   "Malachi 4:1–6",
+   "1 Thessalonians 5:1–11"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "Final Exhortations",
+  "start": [
+   3,
+   14
+  ],
+  "end": [
+   3,
+   18
+  ],
+  "parallels": [],
+  "subheadings": []
+ }
+]

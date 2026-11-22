@@ -1,0 +1,689 @@
+[
+ {
+  "title": "God Instructs Joshua",
+  "start": [
+   1,
+   1
+  ],
+  "end": [
+   1,
+   9
+  ],
+  "parallels": [
+   "Deuteronomy 11:8–17"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "Joshua Takes Charge",
+  "start": [
+   1,
+   10
+  ],
+  "end": [
+   1,
+   18
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Rahab Welcomes the Spies",
+  "start": [
+   2,
+   1
+  ],
+  "end": [
+   2,
+   7
+  ],
+  "parallels": [
+   "Hebrews 11:30–31"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "The Promise to Rahab",
+  "start": [
+   2,
+   8
+  ],
+  "end": [
+   2,
+   24
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Crossing the Jordan",
+  "start": [
+   3,
+   1
+  ],
+  "end": [
+   3,
+   17
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Twelve Stones from the Jordan",
+  "start": [
+   4,
+   1
+  ],
+  "end": [
+   4,
+   18
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The Camp at Gilgal",
+  "start": [
+   4,
+   19
+  ],
+  "end": [
+   4,
+   24
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The Circumcision and Passover at Gilgal",
+  "start": [
+   5,
+   1
+  ],
+  "end": [
+   5,
+   12
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The Commander of the LORD’s Army",
+  "start": [
+   5,
+   13
+  ],
+  "end": [
+   5,
+   15
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The Walls of Jericho",
+  "start": [
+   6,
+   1
+  ],
+  "end": [
+   6,
+   27
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The Defeat at Ai",
+  "start": [
+   7,
+   1
+  ],
+  "end": [
+   7,
+   15
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The Sin of Achan",
+  "start": [
+   7,
+   16
+  ],
+  "end": [
+   7,
+   26
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The Conquest of Ai",
+  "start": [
+   8,
+   1
+  ],
+  "end": [
+   8,
+   29
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Joshua Renews the Covenant",
+  "start": [
+   8,
+   30
+  ],
+  "end": [
+   8,
+   35
+  ],
+  "parallels": [
+   "Deuteronomy 27:1–10"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "The Deceit of the Gibeonites",
+  "start": [
+   9,
+   1
+  ],
+  "end": [
+   9,
+   27
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The Day the Sun Stood Still",
+  "start": [
+   10,
+   1
+  ],
+  "end": [
+   10,
+   15
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The Victory at Makkedah",
+  "start": [
+   10,
+   16
+  ],
+  "end": [
+   10,
+   28
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Conquest of the Southern Cities",
+  "start": [
+   10,
+   29
+  ],
+  "end": [
+   10,
+   43
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Conquest of the Northern Cities",
+  "start": [
+   11,
+   1
+  ],
+  "end": [
+   11,
+   15
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Joshua Takes the Whole Land",
+  "start": [
+   11,
+   16
+  ],
+  "end": [
+   11,
+   23
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The Kings Defeated East of the Jordan",
+  "start": [
+   12,
+   1
+  ],
+  "end": [
+   12,
+   6
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The Kings Defeated West of the Jordan",
+  "start": [
+   12,
+   7
+  ],
+  "end": [
+   12,
+   24
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Lands Yet Unconquered",
+  "start": [
+   13,
+   1
+  ],
+  "end": [
+   13,
+   7
+  ],
+  "parallels": [
+   "Judges 1:1–7"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "The Inheritance East of the Jordan",
+  "start": [
+   13,
+   8
+  ],
+  "end": [
+   13,
+   14
+  ],
+  "parallels": [
+   "Numbers 32:1–42",
+   "Deuteronomy 3:12–22"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "Reuben’s Inheritance",
+  "start": [
+   13,
+   15
+  ],
+  "end": [
+   13,
+   23
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Gad’s Inheritance",
+  "start": [
+   13,
+   24
+  ],
+  "end": [
+   13,
+   28
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Manasseh’s Eastern Inheritance",
+  "start": [
+   13,
+   29
+  ],
+  "end": [
+   13,
+   33
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Land Division West of the Jordan",
+  "start": [
+   14,
+   1
+  ],
+  "end": [
+   14,
+   5
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Caleb Requests Hebron",
+  "start": [
+   14,
+   6
+  ],
+  "end": [
+   14,
+   15
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Judah’s Inheritance",
+  "start": [
+   15,
+   1
+  ],
+  "end": [
+   15,
+   12
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Caleb’s Portion and Conquest",
+  "start": [
+   15,
+   13
+  ],
+  "end": [
+   15,
+   19
+  ],
+  "parallels": [
+   "Judges 1:8–26"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "The Cities of Judah",
+  "start": [
+   15,
+   20
+  ],
+  "end": [
+   15,
+   63
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Ephraim’s Inheritance",
+  "start": [
+   16,
+   1
+  ],
+  "end": [
+   16,
+   10
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Manasseh’s Western Inheritance",
+  "start": [
+   17,
+   1
+  ],
+  "end": [
+   17,
+   18
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The Remainder Divided",
+  "start": [
+   18,
+   1
+  ],
+  "end": [
+   18,
+   10
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Benjamin’s Inheritance",
+  "start": [
+   18,
+   11
+  ],
+  "end": [
+   18,
+   28
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Simeon’s Inheritance",
+  "start": [
+   19,
+   1
+  ],
+  "end": [
+   19,
+   9
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Zebulun’s Inheritance",
+  "start": [
+   19,
+   10
+  ],
+  "end": [
+   19,
+   16
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Issachar’s Inheritance",
+  "start": [
+   19,
+   17
+  ],
+  "end": [
+   19,
+   23
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Asher’s Inheritance",
+  "start": [
+   19,
+   24
+  ],
+  "end": [
+   19,
+   31
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Naphtali’s Inheritance",
+  "start": [
+   19,
+   32
+  ],
+  "end": [
+   19,
+   39
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Dan’s Inheritance",
+  "start": [
+   19,
+   40
+  ],
+  "end": [
+   19,
+   48
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Joshua’s Inheritance",
+  "start": [
+   19,
+   49
+  ],
+  "end": [
+   19,
+   51
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Six Cities of Refuge",
+  "start": [
+   20,
+   1
+  ],
+  "end": [
+   20,
+   9
+  ],
+  "parallels": [
+   "Numbers 35:9–34",
+   "Deuteronomy 4:41–43",
+   "Deuteronomy 19:1–14"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "Forty-Eight Cities for the Levites",
+  "start": [
+   21,
+   1
+  ],
+  "end": [
+   21,
+   45
+  ],
+  "parallels": [
+   "Numbers 35:1–8",
+   "1 Chronicles 6:54–81"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "The Eastern Tribes Return Home",
+  "start": [
+   22,
+   1
+  ],
+  "end": [
+   22,
+   8
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The Altar of Witness",
+  "start": [
+   22,
+   9
+  ],
+  "end": [
+   22,
+   34
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Joshua’s Charge to Leaders",
+  "start": [
+   23,
+   1
+  ],
+  "end": [
+   23,
+   16
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Joshua Reviews Israel’s History",
+  "start": [
+   24,
+   1
+  ],
+  "end": [
+   24,
+   13
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Choose Whom You Will Serve",
+  "start": [
+   24,
+   14
+  ],
+  "end": [
+   24,
+   28
+  ],
+  "parallels": [
+   "Deuteronomy 10:12–22"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "Joshua’s Death and Burial",
+  "start": [
+   24,
+   29
+  ],
+  "end": [
+   24,
+   33
+  ],
+  "parallels": [
+   "Judges 2:6–9"
+  ],
+  "subheadings": []
+ }
+]
