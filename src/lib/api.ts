@@ -5,6 +5,7 @@ export type ApiErrorCode =
   | "invalid_request"
   | "not_found"
   | "rate_limited"
+  | "daily_cap_reached"
   | "upstream_rate_limited"
   | "refused"
   | "server_misconfigured"
@@ -45,4 +46,45 @@ export function rateLimit(request: Request, bucket: string, limit: number, windo
   if (w.count <= limit) return null;
   const retryAfter = Math.max(1, Math.ceil((w.resetAt - now) / 1000));
   return apiError("rate_limited", "Too many requests. Try again shortly.", 429, { "Retry-After": String(retryAfter) });
+}
+
+/**
+ * Server-Timing for one request: `total` plus any phases a route measures (db, files). Browsers
+ * show it in dev tools; scripts/time-card.mjs (planned) reads it to check the 300 ms target.
+ * Durations of the same name add up; time parallel work as one phase so it isn't counted twice.
+ */
+export class ServerTiming {
+  private readonly started = performance.now();
+  private readonly phases = new Map<string, number>();
+
+  async time<T>(name: string, work: Promise<T> | (() => Promise<T>)): Promise<T> {
+    const start = performance.now();
+    try {
+      return await (typeof work === "function" ? work() : work);
+    } finally {
+      this.phases.set(name, (this.phases.get(name) ?? 0) + performance.now() - start);
+    }
+  }
+
+  header(): string {
+    const entries = [...this.phases, ["total", performance.now() - this.started] as const];
+    return entries.map(([name, ms]) => `${name};dur=${ms.toFixed(1)}`).join(", ");
+  }
+}
+
+/** Wraps a route handler so every response it returns, errors included, carries Server-Timing. */
+export function withServerTiming<C>(handler: (request: Request, context: C, timing: ServerTiming) => Response | Promise<Response>) {
+  return async (request: Request, context: C): Promise<Response> => {
+    const timing = new ServerTiming();
+    const response = await handler(request, context, timing);
+    try {
+      response.headers.set("Server-Timing", timing.header());
+      return response;
+    } catch {
+      // Immutable headers (a proxied response): copy it.
+      const copy = new Response(response.body, response);
+      copy.headers.set("Server-Timing", timing.header());
+      return copy;
+    }
+  };
 }

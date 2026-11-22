@@ -1,71 +1,226 @@
 import Anthropic from "@anthropic-ai/sdk";
 import { betaZodOutputFormat } from "@anthropic-ai/sdk/helpers/beta/zod";
-import { formatReference, TRANSLATION, type Passage } from "./bible";
-import { PassageContextSchema, type PassageContext } from "./context-schema";
+import { TRANSLATION, type BookMeta } from "./bible";
+import { PassageContextSchema, type NeighbourUnit, type PassageContext, type PassagePerson } from "./context-schema";
+import { DEFAULT_GENERATIONS_PER_CLIENT, parseQuota, takeClientSlot } from "./client-quota";
 import { db } from "./db";
+import { peopleForPrompt } from "./passage-data";
+import { formatChVRange, type ChV, type Unit } from "./units";
 
 const MODEL = "claude-opus-5-5";
 
 // Bump when the prompt or schema changes so cached answers are regenerated.
-const PROMPT_VERSION = 1;
+// 2: one explanation per BSB section unit (no selection marking); before/after, cross references
+//    and key terms moved out of the model into data; people in the passage given to the prompt.
+export const PROMPT_VERSION = 2;
+
+/** Daily generation cap when DAILY_GENERATION_CAP is missing or invalid. */
+export const DEFAULT_DAILY_CAP = 200;
 
 const SYSTEM_PROMPT = `You are a careful biblical historian helping a reader understand a passage of the Bible in its original setting.
 
 Your job is context, not preaching:
-- Explain who is involved, where and when it happens, what came before and after, and the historical, cultural, and linguistic background a first reader would have taken for granted.
+- Explain who is involved, where and when it happens, and the historical and cultural background a first reader would have taken for granted. The reader already sees the neighbouring sections, cross references and original-language words elsewhere, so don't list them.
+- When a list of people in the passage is given, use those identities; don't merge or swap people who share a name.
 - Keep historical facts and interpretation strictly apart. Facts go in historical_context and cultural_context. Readings of what the passage means go only in interpretations, each labeled with the tradition that holds it. Where traditions differ meaningfully, present the main views side by side and neutrally, without ranking them. Where they don't differ, a single short entry is fine.
 - Every factual claim needs an honest basis. Prefer the biblical text itself and well-known ancient sources (Josephus, Philo, the Mishnah, Tacitus, etc.) and archaeological findings you are confident about. Never invent a book title, page number, or quotation. If a claim is a reasonable reconstruction rather than attested, say so and lower its confidence.
 - Dates and places are often debated. Give ranges and put real disagreements in open_questions instead of picking a side.
-- Only give a Strong's number when you are sure of it; otherwise leave it empty.
 - Be concise. Aim for 3-6 items per list, and fewer when the passage doesn't call for more.`;
+
+export class ContextRefusedError extends Error {}
+
+/** Today's cap of new explanations is spent. */
+export class DailyCapReachedError extends Error {
+  constructor(
+    readonly retryAfterSeconds: number,
+    message = "Today's limit for new explanations is reached; saved ones still work.",
+  ) {
+    super(message);
+  }
+}
+
+/** This client's share of today's new explanations is spent (DAILY_GENERATION_PER_CLIENT). */
+export class ClientCapReachedError extends DailyCapReachedError {
+  constructor(retryAfterSeconds: number) {
+    super(retryAfterSeconds, "This device has reached today's limit for new explanations; saved ones still work.");
+  }
+}
+
+/** The generation counter couldn't be read or written, so no model call was made. */
+export class GenerationCounterError extends Error {}
+
+/** DAILY_GENERATION_CAP: a non-negative integer; missing or invalid means 200; 0 turns generation off. */
+export function parseDailyCap(raw: string | undefined): number {
+  return parseQuota(raw, DEFAULT_DAILY_CAP);
+}
+
+/** Seconds until the next UTC midnight, in (0, 86400]. */
+export function secondsToNextUtcMidnight(now: Date): number {
+  const next = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() + 1);
+  return Math.max(1, Math.ceil((next - now.getTime()) / 1000));
+}
+
+/** What the model sees: the unit's verses (from data/bsb), its neighbours' titles and its people. */
+export type GenerateInput = {
+  book: BookMeta;
+  unit: Unit;
+  verses: { at: ChV; text: string }[];
+  people: PassagePerson[];
+  before: NeighbourUnit | null;
+  after: NeighbourUnit | null;
+};
+
+/** One query; rows come back as objects. */
+export type Sql = (query: string, params: unknown[]) => Promise<Record<string, unknown>[]>;
+
+export type ContextDeps = {
+  sql: Sql;
+  generate: (input: GenerateInput) => Promise<PassageContext>;
+  /** Current time; the counter's day is its UTC date. */
+  now: () => Date;
+  /** Today's cap (see parseDailyCap). */
+  cap: () => number;
+  /** Each client's share of today's generations (DAILY_GENERATION_PER_CLIENT); default 20. */
+  clientCap?: () => number;
+};
+
+export type ContextOptions = {
+  /** Salted hash of the caller's IP (client-quota.ts); when set, the per-client quota applies. */
+  client?: string;
+  /**
+   * False when the input is incomplete (the people lookup failed): a stored answer is still
+   * served, but a new one isn't saved, so a later request with people stores the proper one.
+   */
+  store?: boolean;
+};
+
+const LANG = "en";
+const TRANSLATION_ID = "bsb";
+
+/**
+ * Context for a unit is the same for every reader, so it is generated once and stored in Postgres
+ * (section_context). The in-memory map only joins concurrent requests for the same unit so they
+ * don't each call the model (or spend a slot of the daily cap).
+ */
+export function createContextService(deps: ContextDeps) {
+  const inFlight = new Map<string, Promise<PassageContext>>();
+
+  function getPassageContext(input: GenerateInput, options: ContextOptions = {}): Promise<PassageContext> {
+    const store = options.store ?? true;
+    const { start, end } = input.unit;
+    // Requests without people don't join ones with them (or the reverse): their answers differ.
+    const key = `v${PROMPT_VERSION}:${input.book.slug}.${start[0]}.${start[1]}-${end[0]}.${end[1]}${store ? "" : ":nostore"}`;
+    let pending = inFlight.get(key);
+    if (!pending) {
+      pending = loadOrGenerate(input, store, options.client).finally(() => inFlight.delete(key));
+      inFlight.set(key, pending);
+    }
+    return pending;
+  }
+
+  async function loadOrGenerate(input: GenerateInput, store: boolean, client: string | undefined): Promise<PassageContext> {
+    const { start, end } = input.unit;
+    const where = [LANG, TRANSLATION_ID, input.book.slug, start[0], start[1], end[0], end[1], PROMPT_VERSION];
+    const stored = await deps.sql(
+      `select context from section_context
+        where lang = $1 and translation = $2 and book = $3 and start_ch = $4 and start_v = $5
+          and end_ch = $6 and end_v = $7 and prompt_version = $8`,
+      where,
+    );
+    if (stored[0]) return PassageContextSchema.parse(stored[0].context);
+
+    // A cache miss that isn't joining another request: spend slots before calling the model, so
+    // refused or failed calls count too. This client's quota first, then the global cap.
+    const now = deps.now();
+    if (client !== undefined) await spendClientSlot(now, client);
+    await spendSlot(now);
+
+    const context = await deps.generate(input);
+    if (!store) {
+      console.warn(`not storing context for ${input.book.slug} ${formatChVRange(start, end)}: people were unavailable`);
+      return context;
+    }
+    // The answer is paid for: a failed insert is logged, never turned into an error.
+    try {
+      await deps.sql(
+        `insert into section_context (lang, translation, book, start_ch, start_v, end_ch, end_v, prompt_version, context)
+         values ($1, $2, $3, $4, $5, $6, $7, $8, $9) on conflict do nothing`,
+        [...where, JSON.stringify(context)],
+      );
+    } catch (error) {
+      console.error("storing passage context failed", error);
+    }
+    return context;
+  }
+
+  async function spendClientSlot(now: Date, client: string): Promise<void> {
+    const day = now.toISOString().slice(0, 10);
+    const cap = deps.clientCap?.() ?? DEFAULT_GENERATIONS_PER_CLIENT;
+    let allowed: boolean;
+    try {
+      allowed = await takeClientSlot(deps.sql, { day, bucket: "generation", client, cap });
+    } catch (error) {
+      throw new GenerationCounterError("The per-client generation counter is unavailable.", { cause: error });
+    }
+    if (!allowed) throw new ClientCapReachedError(secondsToNextUtcMidnight(now));
+  }
+
+  async function spendSlot(now: Date): Promise<void> {
+    const day = now.toISOString().slice(0, 10);
+    let rows: Record<string, unknown>[];
+    try {
+      rows = await deps.sql(
+        `insert into generation_days (day, n) select $1::date, 1 where $2::int > 0
+         on conflict (day) do update set n = generation_days.n + 1 where generation_days.n < $2::int
+         returning n`,
+        [day, deps.cap()],
+      );
+    } catch (error) {
+      throw new GenerationCounterError("The daily generation counter is unavailable.", { cause: error });
+    }
+    if (rows.length === 0) throw new DailyCapReachedError(secondsToNextUtcMidnight(now));
+  }
+
+  return { getPassageContext };
+}
+
+let service: ReturnType<typeof createContextService> | undefined;
+
+/** The app's service: Neon, Claude, the real clock and DAILY_GENERATION_CAP. */
+export function contextService() {
+  service ??= createContextService({
+    sql: (query, params) => db().query(query, params) as Promise<Record<string, unknown>[]>,
+    generate: generateWithClaude,
+    now: () => new Date(),
+    cap: () => parseDailyCap(process.env.DAILY_GENERATION_CAP),
+    clientCap: () => parseQuota(process.env.DAILY_GENERATION_PER_CLIENT, DEFAULT_GENERATIONS_PER_CLIENT),
+  });
+  return service;
+}
+
+export function buildPrompt({ book, unit, verses, people, before, after }: GenerateInput): string {
+  const range = formatChVRange(unit.start, unit.end);
+  const lines = verses.map(({ at, text }) => `${at[0]}:${at[1]} ${text}`).join("\n");
+  const around = [
+    before ? `Before it: "${before.title}" (${book.name} ${before.reference}).` : "",
+    after ? `After it: "${after.title}" (${book.name} ${after.reference}).` : "",
+  ].filter(Boolean);
+  const cast = people.length
+    ? `\n\nPeople named in this passage, identified from scholarly data (STEPBible TIPNR):\n${peopleForPrompt(people)}`
+    : "";
+  return `Give the context for ${book.name} ${range}, the section headed "${unit.title}" in the ${TRANSLATION}.${
+    around.length ? `\n${around.join(" ")}` : ""
+  }${cast}
+
+<passage book="${book.name}" range="${range}">
+${lines}
+</passage>`;
+}
 
 // Created lazily so builds and pages that never call the API don't need credentials.
 let client: Anthropic | undefined;
 
-// Context for a passage is the same for every reader, so it is generated once and stored in
-// Postgres (passage_context). The in-memory map only joins concurrent requests for the same
-// passage so they don't each call the model.
-const inFlight = new Map<string, Promise<PassageContext>>();
-
-export class ContextRefusedError extends Error {}
-
-export function getPassageContext(passage: Passage, chapterVerses: string[]): Promise<PassageContext> {
-  const key = `v${PROMPT_VERSION}:${passage.book.slug}.${passage.chapter}.${passage.start}-${passage.end}`;
-  let pending = inFlight.get(key);
-  if (!pending) {
-    pending = loadOrGenerate(passage, chapterVerses).finally(() => inFlight.delete(key));
-    inFlight.set(key, pending);
-  }
-  return pending;
-}
-
-async function loadOrGenerate(passage: Passage, chapterVerses: string[]): Promise<PassageContext> {
-  const where = ["en", "bsb", passage.book.slug, passage.chapter, passage.start, passage.end, PROMPT_VERSION];
-  const stored = (await db().query(
-    `select context from passage_context
-      where lang = $1 and translation = $2 and book = $3 and chapter = $4 and start_v = $5 and end_v = $6 and prompt_version = $7`,
-    where,
-  )) as { context: unknown }[];
-  if (stored[0]) return PassageContextSchema.parse(stored[0].context);
-
-  const context = await generate(passage, chapterVerses);
-  await db().query(
-    `insert into passage_context (lang, translation, book, chapter, start_v, end_v, prompt_version, context)
-     values ($1, $2, $3, $4, $5, $6, $7, $8) on conflict do nothing`,
-    [...where, JSON.stringify(context)],
-  );
-  return context;
-}
-
-async function generate(passage: Passage, chapterVerses: string[]): Promise<PassageContext> {
-  const chapterText = chapterVerses
-    .map((text, i) => {
-      const n = i + 1;
-      const selected = n >= passage.start && n <= passage.end;
-      return `${selected ? ">> " : ""}${n} ${text}`;
-    })
-    .join("\n");
-
+async function generateWithClaude(input: GenerateInput): Promise<PassageContext> {
   client ??= new Anthropic();
   const response = await client.beta.messages.parse({
     model: MODEL,
@@ -79,18 +234,7 @@ async function generate(passage: Passage, chapterVerses: string[]): Promise<Pass
       format: betaZodOutputFormat(PassageContextSchema),
     },
     system: SYSTEM_PROMPT,
-    messages: [
-      {
-        role: "user",
-        content: `Give the context for ${formatReference(passage)}.
-
-The full chapter (${TRANSLATION}) is below. Selected verses are marked with ">>".
-
-<chapter book="${passage.book.name}" chapter="${passage.chapter}">
-${chapterText}
-</chapter>`,
-      },
-    ],
+    messages: [{ role: "user", content: buildPrompt(input) }],
   });
 
   if (response.stop_reason === "refusal") {

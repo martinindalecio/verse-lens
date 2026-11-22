@@ -1,0 +1,814 @@
+[
+ {
+  "title": "Prologue",
+  "start": [
+   1,
+   1
+  ],
+  "end": [
+   1,
+   3
+  ],
+  "parallels": [
+   "Daniel 12:1–13"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "John Greets the Seven Churches",
+  "start": [
+   1,
+   4
+  ],
+  "end": [
+   1,
+   8
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "John’s Vision on Patmos",
+  "start": [
+   1,
+   9
+  ],
+  "end": [
+   1,
+   20
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "To the Church in Ephesus",
+  "start": [
+   2,
+   1
+  ],
+  "end": [
+   2,
+   7
+  ],
+  "parallels": [
+   "Acts 19:8–12",
+   "Ephesians 1:1–2"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "To the Church in Smyrna",
+  "start": [
+   2,
+   8
+  ],
+  "end": [
+   2,
+   11
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "To the Church in Pergamum",
+  "start": [
+   2,
+   12
+  ],
+  "end": [
+   2,
+   17
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "To the Church in Thyatira",
+  "start": [
+   2,
+   18
+  ],
+  "end": [
+   2,
+   29
+  ],
+  "parallels": [
+   "Acts 16:11–15"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "To the Church in Sardis",
+  "start": [
+   3,
+   1
+  ],
+  "end": [
+   3,
+   6
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "To the Church in Philadelphia",
+  "start": [
+   3,
+   7
+  ],
+  "end": [
+   3,
+   13
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "To the Church in Laodicea",
+  "start": [
+   3,
+   14
+  ],
+  "end": [
+   3,
+   22
+  ],
+  "parallels": [
+   "Colossians 2:1–5"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "The Throne in Heaven",
+  "start": [
+   4,
+   1
+  ],
+  "end": [
+   4,
+   4
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Worship of the Creator",
+  "start": [
+   4,
+   5
+  ],
+  "end": [
+   4,
+   11
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The Lamb Takes the Scroll",
+  "start": [
+   5,
+   1
+  ],
+  "end": [
+   5,
+   10
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The Lamb Exalted",
+  "start": [
+   5,
+   11
+  ],
+  "end": [
+   5,
+   14
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The First Seal: The White Horse",
+  "start": [
+   6,
+   1
+  ],
+  "end": [
+   6,
+   2
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The Second Seal: War",
+  "start": [
+   6,
+   3
+  ],
+  "end": [
+   6,
+   4
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The Third Seal: Famine",
+  "start": [
+   6,
+   5
+  ],
+  "end": [
+   6,
+   6
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The Fourth Seal: Death",
+  "start": [
+   6,
+   7
+  ],
+  "end": [
+   6,
+   8
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The Fifth Seal: The Martyrs",
+  "start": [
+   6,
+   9
+  ],
+  "end": [
+   6,
+   11
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The Sixth Seal: Terror",
+  "start": [
+   6,
+   12
+  ],
+  "end": [
+   6,
+   17
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "144,000 Sealed",
+  "start": [
+   7,
+   1
+  ],
+  "end": [
+   7,
+   8
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Praise from the Great Multitude",
+  "start": [
+   7,
+   9
+  ],
+  "end": [
+   7,
+   17
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The Seventh Seal",
+  "start": [
+   8,
+   1
+  ],
+  "end": [
+   8,
+   5
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The First Four Trumpets",
+  "start": [
+   8,
+   6
+  ],
+  "end": [
+   8,
+   13
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The Fifth Trumpet",
+  "start": [
+   9,
+   1
+  ],
+  "end": [
+   9,
+   12
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The Sixth Trumpet",
+  "start": [
+   9,
+   13
+  ],
+  "end": [
+   9,
+   21
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The Angel and the Small Scroll",
+  "start": [
+   10,
+   1
+  ],
+  "end": [
+   10,
+   11
+  ],
+  "parallels": [
+   "Ezekiel 3:1–15"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "The Two Witnesses",
+  "start": [
+   11,
+   1
+  ],
+  "end": [
+   11,
+   6
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The Witnesses Killed and Raised",
+  "start": [
+   11,
+   7
+  ],
+  "end": [
+   11,
+   14
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The Seventh Trumpet",
+  "start": [
+   11,
+   15
+  ],
+  "end": [
+   11,
+   19
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The Woman and the Dragon",
+  "start": [
+   12,
+   1
+  ],
+  "end": [
+   12,
+   6
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The War in Heaven",
+  "start": [
+   12,
+   7
+  ],
+  "end": [
+   12,
+   12
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The Woman Persecuted",
+  "start": [
+   12,
+   13
+  ],
+  "end": [
+   12,
+   17
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The Beast from the Sea",
+  "start": [
+   13,
+   1
+  ],
+  "end": [
+   13,
+   10
+  ],
+  "parallels": [
+   "Daniel 7:1–8"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "The Beast from the Earth",
+  "start": [
+   13,
+   11
+  ],
+  "end": [
+   13,
+   15
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The Mark of the Beast",
+  "start": [
+   13,
+   16
+  ],
+  "end": [
+   13,
+   18
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The Lamb and the 144,000",
+  "start": [
+   14,
+   1
+  ],
+  "end": [
+   14,
+   5
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The Three Angels and Babylon’s Fall",
+  "start": [
+   14,
+   6
+  ],
+  "end": [
+   14,
+   13
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The Harvest of the Earth",
+  "start": [
+   14,
+   14
+  ],
+  "end": [
+   14,
+   20
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The Song of Moses and the Lamb",
+  "start": [
+   15,
+   1
+  ],
+  "end": [
+   15,
+   4
+  ],
+  "parallels": [
+   "Deuteronomy 32:1–47"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "Preparation for Judgment",
+  "start": [
+   15,
+   5
+  ],
+  "end": [
+   15,
+   8
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The First Six Bowls of Wrath",
+  "start": [
+   16,
+   1
+  ],
+  "end": [
+   16,
+   16
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The Seventh Bowl of Wrath",
+  "start": [
+   16,
+   17
+  ],
+  "end": [
+   16,
+   21
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The Woman on the Beast",
+  "start": [
+   17,
+   1
+  ],
+  "end": [
+   17,
+   5
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The Mystery Explained",
+  "start": [
+   17,
+   6
+  ],
+  "end": [
+   17,
+   13
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The Victory of the Lamb",
+  "start": [
+   17,
+   14
+  ],
+  "end": [
+   17,
+   18
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Babylon Is Fallen",
+  "start": [
+   18,
+   1
+  ],
+  "end": [
+   18,
+   8
+  ],
+  "parallels": [
+   "Isaiah 21:1–10"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "Lament over Babylon",
+  "start": [
+   18,
+   9
+  ],
+  "end": [
+   18,
+   20
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The Doom of Babylon",
+  "start": [
+   18,
+   21
+  ],
+  "end": [
+   18,
+   24
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Rejoicing in Heaven",
+  "start": [
+   19,
+   1
+  ],
+  "end": [
+   19,
+   5
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The Marriage of the Lamb",
+  "start": [
+   19,
+   6
+  ],
+  "end": [
+   19,
+   10
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The Rider on the White Horse",
+  "start": [
+   19,
+   11
+  ],
+  "end": [
+   19,
+   16
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Defeat of the Beast and False Prophet",
+  "start": [
+   19,
+   17
+  ],
+  "end": [
+   19,
+   21
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Satan Bound",
+  "start": [
+   20,
+   1
+  ],
+  "end": [
+   20,
+   6
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Satan Cast into the Lake of Fire",
+  "start": [
+   20,
+   7
+  ],
+  "end": [
+   20,
+   10
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Judgment before the Great White Throne",
+  "start": [
+   20,
+   11
+  ],
+  "end": [
+   20,
+   15
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "A New Heaven and a New Earth",
+  "start": [
+   21,
+   1
+  ],
+  "end": [
+   21,
+   8
+  ],
+  "parallels": [
+   "Isaiah 65:17–25"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "The New Jerusalem",
+  "start": [
+   21,
+   9
+  ],
+  "end": [
+   21,
+   27
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The River of Life",
+  "start": [
+   22,
+   1
+  ],
+  "end": [
+   22,
+   5
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Jesus Is Coming",
+  "start": [
+   22,
+   6
+  ],
+  "end": [
+   22,
+   17
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Nothing May Be Added or Removed",
+  "start": [
+   22,
+   18
+  ],
+  "end": [
+   22,
+   21
+  ],
+  "parallels": [],
+  "subheadings": []
+ }
+]

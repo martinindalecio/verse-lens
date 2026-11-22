@@ -16,3 +16,4 @@ In priority order.
 12. **Send corrections upstream**: the Caesar-in-Acts-25-28 fix and others in `data/people/overrides.json` to STEPBible@Gmail.com.
 13. **"Not to be confused with" is too loose**: Saul's card lists Shaul, king of Edom, who shares no story with him. Only list people a reader could actually mix up.
 14. **Bottom sheet drag**: the sheet can only be dragged by its handle; dragging from its content should move it too.
+15. **Batch pre-generation**: generate passage context for Acts and the Gospels (then the rest) with the Batch API at half price, now that it is keyed per BSB section (`docs/designs/reading-companion.md`, Revision 3). Check the output against the eval set before readers see it.

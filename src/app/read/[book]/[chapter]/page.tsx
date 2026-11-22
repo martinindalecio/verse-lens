@@ -73,7 +73,7 @@ async function Chapter({ params, searchParams }: Props) {
       />
 
       <p className="pb-6 text-sm text-muted">
-        Scripture text: {TRANSLATION}. People data: STEPBible TIPNR (CC BY 4.0), with corrections listed in the project.
+        Scripture text: {TRANSLATION}. People data: STEPBible TIPNR (CC BY 4.0), with corrections listed in the project. Cross references: OpenBible.info, CC BY.
       </p>
     </div>
   );

@@ -1,0 +1,378 @@
+[
+ {
+  "title": "The Proclamation of Cyrus",
+  "start": [
+   1,
+   1
+  ],
+  "end": [
+   1,
+   6
+  ],
+  "parallels": [
+   "2 Chronicles 36:22–23",
+   "Isaiah 45:1–25"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "Cyrus Restores the Holy Vessels",
+  "start": [
+   1,
+   7
+  ],
+  "end": [
+   1,
+   11
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The List of Returning Exiles",
+  "start": [
+   2,
+   1
+  ],
+  "end": [
+   2,
+   67
+  ],
+  "parallels": [
+   "Nehemiah 7:4–69"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "Offerings by the Exiles",
+  "start": [
+   2,
+   68
+  ],
+  "end": [
+   2,
+   70
+  ],
+  "parallels": [
+   "Exodus 38:21–31",
+   "Nehemiah 7:70–73"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "Sacrifices Restored",
+  "start": [
+   3,
+   1
+  ],
+  "end": [
+   3,
+   7
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Temple Restoration Begins",
+  "start": [
+   3,
+   8
+  ],
+  "end": [
+   3,
+   13
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Adversaries Hinder the Work",
+  "start": [
+   4,
+   1
+  ],
+  "end": [
+   4,
+   5
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Opposition under Xerxes and Artaxerxes",
+  "start": [
+   4,
+   6
+  ],
+  "end": [
+   4,
+   16
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The Decree of Artaxerxes",
+  "start": [
+   4,
+   17
+  ],
+  "end": [
+   4,
+   24
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Temple Rebuilding Resumes",
+  "start": [
+   5,
+   1
+  ],
+  "end": [
+   5,
+   5
+  ],
+  "parallels": [
+   "Haggai 1:1–11"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "Tattenai’s Letter to Darius",
+  "start": [
+   5,
+   6
+  ],
+  "end": [
+   5,
+   17
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The Decree of Darius",
+  "start": [
+   6,
+   1
+  ],
+  "end": [
+   6,
+   12
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The Temple Completed",
+  "start": [
+   6,
+   13
+  ],
+  "end": [
+   6,
+   15
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Dedication of the Temple",
+  "start": [
+   6,
+   16
+  ],
+  "end": [
+   6,
+   18
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The Returned Exiles Keep the Passover",
+  "start": [
+   6,
+   19
+  ],
+  "end": [
+   6,
+   22
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Ezra Arrives in Jerusalem",
+  "start": [
+   7,
+   1
+  ],
+  "end": [
+   7,
+   10
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Artaxerxes’ Letter for Ezra",
+  "start": [
+   7,
+   11
+  ],
+  "end": [
+   7,
+   26
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Ezra Blesses God",
+  "start": [
+   7,
+   27
+  ],
+  "end": [
+   7,
+   28
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The Exiles Who Returned with Ezra",
+  "start": [
+   8,
+   1
+  ],
+  "end": [
+   8,
+   14
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Ezra Sends for the Levites",
+  "start": [
+   8,
+   15
+  ],
+  "end": [
+   8,
+   20
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Fasting for Protection",
+  "start": [
+   8,
+   21
+  ],
+  "end": [
+   8,
+   23
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Priests to Guard the Offerings",
+  "start": [
+   8,
+   24
+  ],
+  "end": [
+   8,
+   31
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Arrival in Jerusalem",
+  "start": [
+   8,
+   32
+  ],
+  "end": [
+   8,
+   36
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Intermarriage with Neighboring Peoples",
+  "start": [
+   9,
+   1
+  ],
+  "end": [
+   9,
+   4
+  ],
+  "parallels": [
+   "Nehemiah 13:23–31"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "Ezra’s Prayer of Confession",
+  "start": [
+   9,
+   5
+  ],
+  "end": [
+   9,
+   15
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Shecaniah’s Encouragement",
+  "start": [
+   10,
+   1
+  ],
+  "end": [
+   10,
+   5
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The People’s Confession of Sin",
+  "start": [
+   10,
+   6
+  ],
+  "end": [
+   10,
+   17
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Those Guilty of Intermarriage",
+  "start": [
+   10,
+   18
+  ],
+  "end": [
+   10,
+   44
+  ],
+  "parallels": [],
+  "subheadings": []
+ }
+]

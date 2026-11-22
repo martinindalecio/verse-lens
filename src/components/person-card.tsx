@@ -2,6 +2,7 @@
 
 import { useEffect, useState, type ReactNode } from "react";
 import type { PersonCard as Card, PersonLink, Ref } from "@/lib/people";
+import { ReportMistake } from "./report-mistake";
 
 export type Jump = { book: string; chapter: number; verse: number };
 
@@ -34,8 +35,6 @@ function fetchCard(id: string, at: Props["at"], whole: boolean) {
   }
   return { key, pending };
 }
-
-const REPORT_URL = "https://github.com/martinindalecio/verse-lens/issues/new";
 
 export function PersonCard({ id, label, at, onOpenPerson, onJump }: Props) {
   const [whole, setWhole] = useState(false);
@@ -72,7 +71,6 @@ export function PersonCard({ id, label, at, onOpenPerson, onJump }: Props) {
 
   const here = `${at.bookName} ${at.chapter}:${at.verse}`;
   const otherForms = card.aliases.filter((a) => a.form !== label);
-  const reportHref = `${REPORT_URL}?${new URLSearchParams({ title: `Mistake: ${card.name} (${here})`, body: `Person: ${card.id}\nWhere: ${here}\n\nWhat's wrong:\n` })}`;
 
   if (card.kind === "divine") {
     return (
@@ -82,7 +80,7 @@ export function PersonCard({ id, label, at, onOpenPerson, onJump }: Props) {
         <p className="text-base text-muted">
           Appears throughout the Bible. These names are marked by simple rules, so a few may be wrong.
         </p>
-        <Footer reportHref={reportHref} />
+        <Footer personId={card.id} />
       </div>
     );
   }
@@ -160,6 +158,7 @@ export function PersonCard({ id, label, at, onOpenPerson, onJump }: Props) {
                   {range}
                   {e.later && <span className="ml-2 rounded bg-chip px-1.5 py-0.5 text-sm font-normal text-foreground no-underline">Later</span>}
                 </button>
+                {e.title && <p className="text-lg font-bold leading-snug">{e.title}</p>}
                 <p className="text-base leading-relaxed text-muted">“{e.snippet}”</p>
               </Stop>
             );
@@ -219,7 +218,7 @@ export function PersonCard({ id, label, at, onOpenPerson, onJump }: Props) {
         </section>
       )}
 
-      <Footer reportHref={reportHref} />
+      <Footer personId={card.id} />
     </div>
   );
 }
@@ -275,12 +274,10 @@ function PersonRow({ link, onOpen }: { link: PersonLink; onOpen?: () => void }) 
   );
 }
 
-function Footer({ reportHref }: { reportHref: string }) {
+function Footer({ personId }: { personId: string }) {
   return (
     <div className="flex flex-wrap items-center justify-between gap-3 border-t border-line pt-4 text-base">
-      <a href={reportHref} target="_blank" rel="noreferrer" className="min-h-11 content-center text-accent underline underline-offset-4">
-        Report a mistake
-      </a>
+      <ReportMistake target={`person:${personId}`} />
       <span className="text-sm text-muted">People data: STEPBible TIPNR, CC BY 4.0</span>
     </div>
   );
