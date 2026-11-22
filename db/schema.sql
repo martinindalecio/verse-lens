@@ -117,9 +117,15 @@ create table if not exists reading_positions (
 create table if not exists mistake_reports (
   id          bigint generated always as identity primary key,
   user_id     text,                          -- null when signed out
-  target      text not null,                 -- 'person:<id>' or 'passage:<book>.<ch>.<v>-<v>'
+  target      text not null,                 -- 'person:<id>' or 'passage:<book>.<ch>.<v>' (a section's start verse)
   lang        text not null,
   message     text not null,
   created_at  timestamptz not null default now(),
   resolved    boolean not null default false
+);
+
+-- Global daily insert cap for reports (REPORTS_DAILY_CAP, default 500); one row per UTC day.
+create table if not exists report_days (
+  day  date primary key,
+  n    int not null
 );
