@@ -1,0 +1,63 @@
+[
+ {
+  "title": "A Greeting from Jude",
+  "start": [
+   1,
+   1
+  ],
+  "end": [
+   1,
+   2
+  ],
+  "parallels": [
+   "James 1:1"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "God’s Judgment on the Ungodly",
+  "start": [
+   1,
+   3
+  ],
+  "end": [
+   1,
+   16
+  ],
+  "parallels": [
+   "2 Peter 3:1–7"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "A Call to Persevere",
+  "start": [
+   1,
+   17
+  ],
+  "end": [
+   1,
+   23
+  ],
+  "parallels": [
+   "Hebrews 10:19–39",
+   "2 Peter 3:1–7"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "Doxology",
+  "start": [
+   1,
+   24
+  ],
+  "end": [
+   1,
+   25
+  ],
+  "parallels": [
+   "Romans 16:25–27"
+  ],
+  "subheadings": []
+ }
+]

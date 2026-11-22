@@ -1,0 +1,1230 @@
+[
+ {
+  "title": "The Beginning",
+  "start": [
+   1,
+   1
+  ],
+  "end": [
+   1,
+   5
+  ],
+  "parallels": [
+   "Genesis 1:1–2",
+   "Hebrews 11:1–3"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "The Witness of John",
+  "start": [
+   1,
+   6
+  ],
+  "end": [
+   1,
+   13
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The Word Became Flesh",
+  "start": [
+   1,
+   14
+  ],
+  "end": [
+   1,
+   18
+  ],
+  "parallels": [
+   "Psalms 84:1–12"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "The Mission of John the Baptist",
+  "start": [
+   1,
+   19
+  ],
+  "end": [
+   1,
+   28
+  ],
+  "parallels": [
+   "Isaiah 40:1–5",
+   "Matthew 3:1–12",
+   "Mark 1:1–8",
+   "Luke 3:1–20"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "Jesus the Lamb of God",
+  "start": [
+   1,
+   29
+  ],
+  "end": [
+   1,
+   34
+  ],
+  "parallels": [
+   "Matthew 3:13–17",
+   "Mark 1:9–11",
+   "Luke 3:21–22"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "The First Disciples",
+  "start": [
+   1,
+   35
+  ],
+  "end": [
+   1,
+   42
+  ],
+  "parallels": [
+   "Matthew 4:18–22",
+   "Mark 1:16–20",
+   "Luke 5:1–11"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "Jesus Calls Philip and Nathanael",
+  "start": [
+   1,
+   43
+  ],
+  "end": [
+   1,
+   51
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The Wedding at Cana",
+  "start": [
+   2,
+   1
+  ],
+  "end": [
+   2,
+   11
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Jesus Cleanses the Temple",
+  "start": [
+   2,
+   12
+  ],
+  "end": [
+   2,
+   25
+  ],
+  "parallels": [
+   "Matthew 21:12–17",
+   "Mark 11:15–19",
+   "Luke 19:45–48"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "Jesus and Nicodemus",
+  "start": [
+   3,
+   1
+  ],
+  "end": [
+   3,
+   21
+  ],
+  "parallels": [
+   "Genesis 22:1–10",
+   "Romans 5:6–11"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "John’s Testimony about Jesus",
+  "start": [
+   3,
+   22
+  ],
+  "end": [
+   3,
+   36
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Jesus and the Samaritan Woman",
+  "start": [
+   4,
+   1
+  ],
+  "end": [
+   4,
+   26
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The Disciples Return and Marvel",
+  "start": [
+   4,
+   27
+  ],
+  "end": [
+   4,
+   38
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Many Samaritans Believe",
+  "start": [
+   4,
+   39
+  ],
+  "end": [
+   4,
+   42
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Jesus Heals the Official’s Son",
+  "start": [
+   4,
+   43
+  ],
+  "end": [
+   4,
+   54
+  ],
+  "parallels": [
+   "Matthew 8:5–13",
+   "Luke 7:1–10"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "The Pool of Bethesda",
+  "start": [
+   5,
+   1
+  ],
+  "end": [
+   5,
+   15
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The Father and the Son",
+  "start": [
+   5,
+   16
+  ],
+  "end": [
+   5,
+   30
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Testimonies about Jesus",
+  "start": [
+   5,
+   31
+  ],
+  "end": [
+   5,
+   38
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The Witness of Scripture",
+  "start": [
+   5,
+   39
+  ],
+  "end": [
+   5,
+   47
+  ],
+  "parallels": [
+   "Luke 16:19–31"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "The Feeding of the Five Thousand",
+  "start": [
+   6,
+   1
+  ],
+  "end": [
+   6,
+   15
+  ],
+  "parallels": [
+   "Matthew 14:13–21",
+   "Mark 6:30–44",
+   "Luke 9:10–17"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "Jesus Walks on Water",
+  "start": [
+   6,
+   16
+  ],
+  "end": [
+   6,
+   21
+  ],
+  "parallels": [
+   "Matthew 14:22–33",
+   "Mark 6:45–52"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "Jesus the Bread of Life",
+  "start": [
+   6,
+   22
+  ],
+  "end": [
+   6,
+   58
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Many Disciples Turn Back",
+  "start": [
+   6,
+   59
+  ],
+  "end": [
+   6,
+   66
+  ],
+  "parallels": [
+   "Matthew 8:18–22",
+   "Luke 9:57–62",
+   "Luke 14:25–33"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "Peter’s Confession of Faith",
+  "start": [
+   6,
+   67
+  ],
+  "end": [
+   6,
+   71
+  ],
+  "parallels": [
+   "Matthew 16:13–20",
+   "Mark 8:27–30",
+   "Luke 9:18–20"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "Jesus Teaches at the Feast",
+  "start": [
+   7,
+   1
+  ],
+  "end": [
+   7,
+   24
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Is Jesus the Christ?",
+  "start": [
+   7,
+   25
+  ],
+  "end": [
+   7,
+   36
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Living Water",
+  "start": [
+   7,
+   37
+  ],
+  "end": [
+   7,
+   39
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Division over Jesus",
+  "start": [
+   7,
+   40
+  ],
+  "end": [
+   7,
+   44
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The Unbelief of the Jewish Leaders",
+  "start": [
+   7,
+   45
+  ],
+  "end": [
+   7,
+   53
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The Woman Caught in Adultery",
+  "start": [
+   8,
+   1
+  ],
+  "end": [
+   8,
+   11
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Jesus the Light of the World",
+  "start": [
+   8,
+   12
+  ],
+  "end": [
+   8,
+   29
+  ],
+  "parallels": [
+   "1 John 1:5–10"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "The Truth Will Set You Free",
+  "start": [
+   8,
+   30
+  ],
+  "end": [
+   8,
+   47
+  ],
+  "parallels": [
+   "2 John 1:4–6"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "Before Abraham Was Born, I Am",
+  "start": [
+   8,
+   48
+  ],
+  "end": [
+   8,
+   59
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Jesus Heals the Man Born Blind",
+  "start": [
+   9,
+   1
+  ],
+  "end": [
+   9,
+   12
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The Pharisees Investigate the Healing",
+  "start": [
+   9,
+   13
+  ],
+  "end": [
+   9,
+   34
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Spiritual Blindness",
+  "start": [
+   9,
+   35
+  ],
+  "end": [
+   9,
+   41
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Jesus the Good Shepherd",
+  "start": [
+   10,
+   1
+  ],
+  "end": [
+   10,
+   21
+  ],
+  "parallels": [
+   "Psalms 23:1–6",
+   "Ezekiel 34:11–24"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "Jesus at the Feast of Dedication",
+  "start": [
+   10,
+   22
+  ],
+  "end": [
+   10,
+   39
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "John’s Testimony Confirmed",
+  "start": [
+   10,
+   40
+  ],
+  "end": [
+   10,
+   42
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The Death of Lazarus",
+  "start": [
+   11,
+   1
+  ],
+  "end": [
+   11,
+   16
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Jesus Comforts Martha and Mary",
+  "start": [
+   11,
+   17
+  ],
+  "end": [
+   11,
+   37
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Jesus Raises Lazarus",
+  "start": [
+   11,
+   38
+  ],
+  "end": [
+   11,
+   44
+  ],
+  "parallels": [
+   "Acts 9:36–43"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "The Plot to Kill Jesus",
+  "start": [
+   11,
+   45
+  ],
+  "end": [
+   11,
+   57
+  ],
+  "parallels": [
+   "Matthew 26:1–5",
+   "Mark 14:1–2",
+   "Luke 22:1–2"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "Mary Anoints Jesus",
+  "start": [
+   12,
+   1
+  ],
+  "end": [
+   12,
+   8
+  ],
+  "parallels": [
+   "Matthew 26:6–13",
+   "Mark 14:3–9",
+   "Luke 7:36–50"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "The Plot to Kill Lazarus",
+  "start": [
+   12,
+   9
+  ],
+  "end": [
+   12,
+   11
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The Triumphal Entry",
+  "start": [
+   12,
+   12
+  ],
+  "end": [
+   12,
+   19
+  ],
+  "parallels": [
+   "Zechariah 9:9–13",
+   "Matthew 21:1–11",
+   "Mark 11:1–11",
+   "Luke 19:28–40"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "Jesus Predicts His Death",
+  "start": [
+   12,
+   20
+  ],
+  "end": [
+   12,
+   36
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Belief and Unbelief",
+  "start": [
+   12,
+   37
+  ],
+  "end": [
+   12,
+   50
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Jesus Washes His Disciples’ Feet",
+  "start": [
+   13,
+   1
+  ],
+  "end": [
+   13,
+   17
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Jesus Predicts His Betrayal",
+  "start": [
+   13,
+   18
+  ],
+  "end": [
+   13,
+   30
+  ],
+  "parallels": [
+   "Psalms 41:1–13"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "Love One Another",
+  "start": [
+   13,
+   31
+  ],
+  "end": [
+   13,
+   35
+  ],
+  "parallels": [
+   "Romans 12:9–13",
+   "1 John 3:11–24"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "Jesus Predicts Peter’s Denial",
+  "start": [
+   13,
+   36
+  ],
+  "end": [
+   13,
+   38
+  ],
+  "parallels": [
+   "Matthew 26:31–35",
+   "Mark 14:27–31",
+   "Luke 22:31–38"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "In My Father’s House Are Many Rooms",
+  "start": [
+   14,
+   1
+  ],
+  "end": [
+   14,
+   4
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The Way, the Truth, and the Life",
+  "start": [
+   14,
+   5
+  ],
+  "end": [
+   14,
+   14
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Jesus Promises the Holy Spirit",
+  "start": [
+   14,
+   15
+  ],
+  "end": [
+   14,
+   26
+  ],
+  "parallels": [
+   "John 16:5–16"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "Peace I Leave with You",
+  "start": [
+   14,
+   27
+  ],
+  "end": [
+   14,
+   31
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Jesus the True Vine",
+  "start": [
+   15,
+   1
+  ],
+  "end": [
+   15,
+   8
+  ],
+  "parallels": [
+   "Isaiah 27:1–13"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "No Greater Love",
+  "start": [
+   15,
+   9
+  ],
+  "end": [
+   15,
+   17
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The Hatred of the World",
+  "start": [
+   15,
+   18
+  ],
+  "end": [
+   15,
+   27
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Persecution Foretold",
+  "start": [
+   16,
+   1
+  ],
+  "end": [
+   16,
+   4
+  ],
+  "parallels": [
+   "Acts 23:12–22"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "The Promise of the Holy Spirit",
+  "start": [
+   16,
+   5
+  ],
+  "end": [
+   16,
+   16
+  ],
+  "parallels": [
+   "John 14:15–26"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "Grief Will Turn to Joy",
+  "start": [
+   16,
+   17
+  ],
+  "end": [
+   16,
+   22
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Ask in My Name",
+  "start": [
+   16,
+   23
+  ],
+  "end": [
+   16,
+   33
+  ],
+  "parallels": [
+   "Matthew 18:19–20"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "Prayer for the Son",
+  "start": [
+   17,
+   1
+  ],
+  "end": [
+   17,
+   5
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Prayer for the Disciples",
+  "start": [
+   17,
+   6
+  ],
+  "end": [
+   17,
+   19
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Prayer for All Believers",
+  "start": [
+   17,
+   20
+  ],
+  "end": [
+   17,
+   26
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The Betrayal of Jesus",
+  "start": [
+   18,
+   1
+  ],
+  "end": [
+   18,
+   14
+  ],
+  "parallels": [
+   "Matthew 26:47–56",
+   "Mark 14:43–52",
+   "Luke 22:47–53"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "Peter’s First Denial",
+  "start": [
+   18,
+   15
+  ],
+  "end": [
+   18,
+   18
+  ],
+  "parallels": [
+   "Matthew 26:69–70",
+   "Mark 14:66–68",
+   "Luke 22:54–57"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "Jesus before the High Priest",
+  "start": [
+   18,
+   19
+  ],
+  "end": [
+   18,
+   24
+  ],
+  "parallels": [
+   "Matthew 26:57–68",
+   "Mark 14:53–65",
+   "Luke 22:66–71"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "Peter’s Second and Third Denials",
+  "start": [
+   18,
+   25
+  ],
+  "end": [
+   18,
+   27
+  ],
+  "parallels": [
+   "Matthew 26:71–75",
+   "Mark 14:69–72",
+   "Luke 22:58–62"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "Jesus before Pilate",
+  "start": [
+   18,
+   28
+  ],
+  "end": [
+   18,
+   40
+  ],
+  "parallels": [
+   "Matthew 27:11–14",
+   "Luke 23:1–5"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "The Soldiers Mock Jesus",
+  "start": [
+   19,
+   1
+  ],
+  "end": [
+   19,
+   15
+  ],
+  "parallels": [
+   "Isaiah 50:4–11",
+   "Matthew 27:27–31",
+   "Mark 15:16–20",
+   "Luke 22:63–65"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "The Crucifixion",
+  "start": [
+   19,
+   16
+  ],
+  "end": [
+   19,
+   27
+  ],
+  "parallels": [
+   "Psalms 22:1–31",
+   "Matthew 27:32–44",
+   "Mark 15:21–32",
+   "Luke 23:26–43"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "The Death of Jesus",
+  "start": [
+   19,
+   28
+  ],
+  "end": [
+   19,
+   30
+  ],
+  "parallels": [
+   "Psalms 22:1–31",
+   "Matthew 27:45–56",
+   "Mark 15:33–41",
+   "Luke 23:44–49"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "Jesus’ Side Is Pierced",
+  "start": [
+   19,
+   31
+  ],
+  "end": [
+   19,
+   37
+  ],
+  "parallels": [
+   "Zechariah 12:10–14"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "The Burial of Jesus",
+  "start": [
+   19,
+   38
+  ],
+  "end": [
+   19,
+   42
+  ],
+  "parallels": [
+   "Isaiah 53:9–12",
+   "Matthew 27:57–61",
+   "Mark 15:42–47",
+   "Luke 23:50–56"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "The Resurrection",
+  "start": [
+   20,
+   1
+  ],
+  "end": [
+   20,
+   9
+  ],
+  "parallels": [
+   "Matthew 28:1–10",
+   "Mark 16:1–8",
+   "Luke 24:1–12"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "Jesus Appears to Mary Magdalene",
+  "start": [
+   20,
+   10
+  ],
+  "end": [
+   20,
+   18
+  ],
+  "parallels": [
+   "Mark 16:9–11"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "Jesus Appears to the Disciples",
+  "start": [
+   20,
+   19
+  ],
+  "end": [
+   20,
+   23
+  ],
+  "parallels": [
+   "Luke 24:36–49",
+   "1 John 1:1–4"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "Jesus Appears to Thomas",
+  "start": [
+   20,
+   24
+  ],
+  "end": [
+   20,
+   29
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "The Purpose of John’s Book",
+  "start": [
+   20,
+   30
+  ],
+  "end": [
+   20,
+   31
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Jesus Appears by the Sea of Tiberias",
+  "start": [
+   21,
+   1
+  ],
+  "end": [
+   21,
+   14
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Jesus and Peter",
+  "start": [
+   21,
+   15
+  ],
+  "end": [
+   21,
+   19
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Jesus and the Beloved Disciple",
+  "start": [
+   21,
+   20
+  ],
+  "end": [
+   21,
+   25
+  ],
+  "parallels": [],
+  "subheadings": []
+ }
+]

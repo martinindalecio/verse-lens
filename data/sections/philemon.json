@@ -1,0 +1,57 @@
+[
+ {
+  "title": "Greetings from Paul and Timothy",
+  "start": [
+   1,
+   1
+  ],
+  "end": [
+   1,
+   3
+  ],
+  "parallels": [
+   "Philippians 1:1–2",
+   "Colossians 1:1–2"
+  ],
+  "subheadings": []
+ },
+ {
+  "title": "Philemon’s Faith and Love",
+  "start": [
+   1,
+   4
+  ],
+  "end": [
+   1,
+   7
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Paul’s Appeal for Onesimus",
+  "start": [
+   1,
+   8
+  ],
+  "end": [
+   1,
+   22
+  ],
+  "parallels": [],
+  "subheadings": []
+ },
+ {
+  "title": "Additional Greetings",
+  "start": [
+   1,
+   23
+  ],
+  "end": [
+   1,
+   25
+  ],
+  "parallels": [],
+  "subheadings": []
+ }
+]
