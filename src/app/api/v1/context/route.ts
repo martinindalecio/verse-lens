@@ -1,12 +1,12 @@
 import Anthropic from "@anthropic-ai/sdk";
-import { apiError, rateLimit } from "@/lib/api";
+import { apiError, rateLimit, withServerTiming } from "@/lib/api";
 import { getBook, getChapter } from "@/lib/bible";
 import { ContextRefusedError, getPassageContext } from "@/lib/context";
 import { ContextRequestSchema } from "@/lib/context-schema";
 
 const MAX_VERSES = 30;
 
-export async function POST(request: Request) {
+export const POST = withServerTiming(async (request) => {
   // Every miss here is a paid Opus call, so this is the tightest limit.
   const limited = rateLimit(request, "context", 10);
   if (limited) return limited;
@@ -36,4 +36,4 @@ export async function POST(request: Request) {
     console.error("context generation failed", error);
     return apiError("upstream_failed", "Couldn't generate context. Try again.", 502);
   }
-}
+});

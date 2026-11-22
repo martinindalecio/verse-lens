@@ -160,6 +160,7 @@ export function PersonCard({ id, label, at, onOpenPerson, onJump }: Props) {
                   {range}
                   {e.later && <span className="ml-2 rounded bg-chip px-1.5 py-0.5 text-sm font-normal text-foreground no-underline">Later</span>}
                 </button>
+                {e.title && <p className="text-lg font-bold leading-snug">{e.title}</p>}
                 <p className="text-base leading-relaxed text-muted">“{e.snippet}”</p>
               </Stop>
             );
