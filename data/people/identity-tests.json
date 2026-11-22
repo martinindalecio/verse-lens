@@ -1,0 +1,17 @@
+[
+  { "book": "acts", "chapter": 8, "verse": 5, "form": "Philip", "expected": "Philip@Act.6.5-" },
+  { "book": "acts", "chapter": 8, "verse": 26, "form": "Philip", "expected": "Philip@Act.6.5-" },
+  { "book": "acts", "chapter": 1, "verse": 13, "form": "Philip", "expected": "Philip@Mat.10.3-Act" },
+  { "book": "acts", "chapter": 9, "verse": 4, "form": "Saul", "expected": "Paul@Act.7.58-2Pe" },
+  { "book": "acts", "chapter": 13, "verse": 9, "form": "Saul", "expected": "Paul@Act.7.58-2Pe" },
+  { "book": "acts", "chapter": 13, "verse": 9, "form": "Paul", "expected": "Paul@Act.7.58-2Pe" },
+  { "book": "acts", "chapter": 13, "verse": 21, "form": "Saul", "expected": "Saul@1Sa.9.2-Act" },
+  { "book": "acts", "chapter": 12, "verse": 1, "form": "Herod", "expected": "Herod@Act.12.1-" },
+  { "book": "luke", "chapter": 23, "verse": 7, "form": "Herod", "expected": "Herod@Mat.14.1-Act" },
+  { "book": "acts", "chapter": 12, "verse": 2, "form": "James", "expected": "James@Mat.4.21-Act" },
+  { "book": "acts", "chapter": 15, "verse": 13, "form": "James", "expected": "James@Mat.13.55-Jud" },
+  { "book": "acts", "chapter": 3, "verse": 1, "form": "John", "expected": "John@Mat.4.21-Rev" },
+  { "book": "acts", "chapter": 12, "verse": 12, "form": "John", "expected": "Mark@Act.12.12-1Pe" },
+  { "book": "acts", "chapter": 1, "verse": 14, "form": "Mary", "expected": "Mary@Mat.1.16-Act" },
+  { "book": "acts", "chapter": 12, "verse": 12, "form": "Mary", "expected": "Mary@Act.12.12" }
+]
