@@ -19,9 +19,11 @@ type Props = {
   state: ContextState;
   /** Opens a person's card at the verse where the passage first names them. */
   onOpenPerson?: (id: string, label: string, verse: ChapterVerse) => void;
+  /** Clears this selection's error and asks again; offered for every error but the daily cap. */
+  onRetry?: () => void;
 };
 
-export function ContextPanel({ state, onOpenPerson }: Props) {
+export function ContextPanel({ state, onOpenPerson, onRetry }: Props) {
   if (state.status === "idle") {
     return (
       <p className="text-sm text-muted">
@@ -45,7 +47,16 @@ export function ContextPanel({ state, onOpenPerson }: Props) {
         </div>
       );
     }
-    return <p className="text-sm text-rose-700 dark:text-rose-400">{state.message}</p>;
+    return (
+      <div className="space-y-3">
+        <p className="text-sm text-rose-700 dark:text-rose-400">{state.message}</p>
+        {onRetry && (
+          <button type="button" onClick={onRetry} className="min-h-11 rounded-xl border-2 border-line px-4 text-base font-bold">
+            Try again
+          </button>
+        )}
+      </div>
+    );
   }
 
   const { unit, selection, ai, data } = state.response;
@@ -61,7 +72,7 @@ export function ContextPanel({ state, onOpenPerson }: Props) {
       </div>
 
       <div className="space-y-6 border-t border-line pt-5">
-        <SourceTag>From reference data, not AI</SourceTag>
+        <SourceTag>From reference data</SourceTag>
         <DataSections data={data} onOpenPerson={onOpenPerson} />
       </div>
 
@@ -170,8 +181,8 @@ function AiSections({ ai: c }: { ai: PassageContext }) {
       {c.interpretations.length > 0 && (
         <Section title="How traditions read it" note="Interpretation, not historical fact.">
           <ul className="space-y-2">
-            {c.interpretations.map((v) => (
-              <li key={v.tradition} className="border-l-2 border-line pl-3">
+            {c.interpretations.map((v, i) => (
+              <li key={`${i}:${v.tradition}`}className="border-l-2 border-line pl-3">
                 <span className="font-medium">{v.tradition}</span>
                 <p>{v.view}</p>
               </li>
@@ -183,8 +194,8 @@ function AiSections({ ai: c }: { ai: PassageContext }) {
       {c.open_questions.length > 0 && (
         <Section title="Open questions">
           <ul className="list-disc space-y-1 pl-5">
-            {c.open_questions.map((q) => (
-              <li key={q}>{q}</li>
+            {c.open_questions.map((q, i) => (
+              <li key={i}>{q}</li>
             ))}
           </ul>
         </Section>
@@ -304,8 +315,8 @@ function Claims({ title, claims }: { title: string; claims: PassageContext["hist
   return (
     <Section title={title}>
       <ul className="space-y-3">
-        {claims.map((claim) => (
-          <li key={claim.text}>
+        {claims.map((claim, i) => (
+          <li key={`${i}:${claim.text}`}>
             <p>{claim.text}</p>
             <p className="text-xs text-muted">
               Basis: {claim.basis} · <Confidence level={claim.confidence} />

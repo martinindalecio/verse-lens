@@ -28,12 +28,16 @@ vi.mock("@/lib/people", () => ({
       : { spans: {}, people: {} },
   ),
 }));
+const dbQuery = vi.hoisted(() => ({ fail: false }));
 vi.mock("@/lib/db", () => ({
   db: () => ({
-    query: vi.fn(async () => [
-      { id: "Stephen@Act.6.5-", description: "The first Christian martyr" },
-      { id: "Philip@Act.6.5-", description: "One of the seven, later an evangelist" },
-    ]),
+    query: vi.fn(async () => {
+      if (dbQuery.fail) throw new Error("connection reset");
+      return [
+        { id: "Stephen@Act.6.5-", description: "The first Christian martyr" },
+        { id: "Philip@Act.6.5-", description: "One of the seven, later an evangelist" },
+      ];
+    }),
   }),
 }));
 
@@ -112,7 +116,7 @@ describe("passage data for Acts 6:1-7, The Choosing of the Seven", () => {
 
   it("lists the people named in the unit, without divine names, with TIPNR descriptions", async () => {
     const ctx = await actsContext(6, 1);
-    const people = await unitPeople(ctx);
+    const people = (await unitPeople(ctx))!;
     expect(people.map((p) => [p.name, p.usualName, p.firstRef, p.description])).toEqual([
       ["Stephen", null, "Acts 6:5", "The first Christian martyr"],
       ["Philip", null, "Acts 6:5", "One of the seven, later an evangelist"],
@@ -122,5 +126,19 @@ describe("passage data for Acts 6:1-7, The Choosing of the Seven", () => {
     const prompt = peopleForPrompt(people);
     expect(prompt).toContain("- Philip = One of the seven, later an evangelist (Acts 6:5)");
     expect(prompt).toContain("- Nicolas = also called Nicolaus (Acts 6:5)");
+  });
+
+  it("returns null, not [], when the people lookup fails", async () => {
+    const warn = vi.spyOn(console, "warn").mockImplementation(() => {});
+    dbQuery.fail = true;
+    try {
+      expect(await unitPeople(await actsContext(6, 1))).toBeNull();
+      expect(warn).toHaveBeenCalled();
+    } finally {
+      dbQuery.fail = false;
+      warn.mockRestore();
+    }
+    // A unit naming nobody is an empty list, not a failure.
+    expect(await unitPeople(await actsContext(1, 1))).toEqual([]);
   });
 });

@@ -21,8 +21,10 @@ const untimed: Timer = { time: (_name, work) => (typeof work === "function" ? wo
 
 export type ContextHandlerOptions = {
   service?: ReturnType<typeof createContextService>;
-  /** People in the unit; defaults to the database (empty when it is unavailable). */
-  people?: (ctx: Pick<UnitContext, "book" | "unit">) => Promise<PassagePerson[]>;
+  /** People in the unit; defaults to the database. null: the lookup failed. */
+  people?: (ctx: Pick<UnitContext, "book" | "unit">) => Promise<PassagePerson[] | null>;
+  /** Salted hash of the caller's IP (client-quota.ts), for the per-client daily quota. */
+  client?: string;
   timing?: Timer;
 };
 
@@ -66,13 +68,19 @@ export async function handleContextRequest(body: unknown, options: ContextHandle
   const { before, after } = neighbours(ctx);
 
   try {
-    const people = await timing.time("db", (options.people ?? unitPeople)(ctx));
+    // Without people (lookup failed) the explanation still goes ahead, but isn't stored.
+    const found = await timing.time("db", (options.people ?? unitPeople)(ctx));
+    const people = found ?? [];
+    const contextOptions = { client: options.client, store: found !== null };
     const unitVerses = versesBetween(unit.start, unit.end, chapterLength).map((at) => ({
       at,
       text: chapterTexts.get(at[0])?.[at[1] - 1] ?? "",
     }));
     const [ai, refs, terms] = await Promise.all([
-      timing.time("context", (options.service ?? contextService()).getPassageContext({ book, unit, verses: unitVerses, people, before, after })),
+      timing.time(
+        "context",
+        (options.service ?? contextService()).getPassageContext({ book, unit, verses: unitVerses, people, before, after }, contextOptions),
+      ),
       timing.time("files", crossReferences(ctx)),
       timing.time("files", keyTerms(ctx)),
     ]);

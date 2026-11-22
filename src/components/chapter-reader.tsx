@@ -131,18 +131,33 @@ export function ChapterReader({ bookSlug, bookName, chapter, verses, people, ini
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ book: bookSlug, chapter, ...r }),
       });
-      const body = await res.json();
-      if (!res.ok) {
+      // A proxy or platform timeout can answer with HTML, not our JSON.
+      const body = await res.json().catch(() => null);
+      if (!res.ok || !body) {
         // Over the daily cap: say "try later" and don't retry on our own.
         const retryAfter = Number(res.headers.get("Retry-After")) || undefined;
-        const message = body.error?.message ?? `Request failed (${res.status})`;
-        setContexts((c) => ({ ...c, [key]: { status: "error", reference, message, code: body.error?.code, retryAfter } }));
+        const message = body?.error?.message ?? "Something went wrong getting context for this passage.";
+        setContexts((c) => ({ ...c, [key]: { status: "error", reference, message, code: body?.error?.code, retryAfter } }));
         return;
       }
       setContexts((c) => ({ ...c, [key]: { status: "done", reference, response: body as PassageContextResponse } }));
-    } catch (error) {
-      setContexts((c) => ({ ...c, [key]: { status: "error", reference, message: error instanceof Error ? error.message : String(error) } }));
+    } catch {
+      setContexts((c) => ({
+        ...c,
+        [key]: { status: "error", reference, message: "Couldn't reach the server. Check your connection and try again." },
+      }));
     }
+  }
+
+  /** "Try again" after an error: forget this range's error, then ask again. */
+  function retry(r: Range) {
+    const key = rangeKey(r);
+    setContexts((c) => {
+      const rest = { ...c };
+      delete rest[key];
+      return rest;
+    });
+    void explain(r);
   }
 
   function onHandleUp(y: number) {
@@ -291,6 +306,7 @@ export function ChapterReader({ bookSlug, bookName, chapter, verses, people, ini
               people={people}
               state={contexts[rangeKey(top)]}
               onExplain={() => explain(top)}
+              onRetry={() => retry(top)}
               onOpenPerson={(id, label, verse = top.start) => openPerson(id, label, verse)}
             />
           ) : (
@@ -351,6 +367,7 @@ function PassageView({
   people,
   state,
   onExplain,
+  onRetry,
   onOpenPerson,
 }: {
   title: string;
@@ -359,6 +376,7 @@ function PassageView({
   people: ChapterPeople;
   state: ContextState | undefined;
   onExplain: () => void;
+  onRetry: () => void;
   onOpenPerson: (id: string, label: string, verse?: number) => void;
 }) {
   const here = new Map<string, string>();
@@ -399,6 +417,7 @@ function PassageView({
       ) : (
         <ContextPanel
           state={state}
+          onRetry={state.status === "error" && state.code !== "daily_cap_reached" ? onRetry : undefined}
           // People named elsewhere in the section open at their verse when it is in this chapter.
           onOpenPerson={(id, label, [ch, v]) => onOpenPerson(id, label, ch === chapter ? v : range.start)}
         />

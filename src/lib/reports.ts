@@ -1,4 +1,5 @@
 import { getBook, getChapter } from "./bible";
+import { DEFAULT_REPORTS_PER_CLIENT, parseQuota, takeClientSlot } from "./client-quota";
 import { db } from "./db";
 import { getSections, sectionAt } from "./sections";
 import { sectionUnits } from "./units";
@@ -72,6 +73,17 @@ export async function takeDailySlot(cap = dailyCap(), day = new Date().toISOStri
     [day, cap],
   );
   return rows.length > 0;
+}
+
+/** Spends one of this client's report slots today (REPORTS_PER_CLIENT, default 20); false when spent. */
+export async function takeClientReportSlot(client: string, day = new Date().toISOString().slice(0, 10)): Promise<boolean> {
+  const cap = parseQuota(process.env.REPORTS_PER_CLIENT, DEFAULT_REPORTS_PER_CLIENT);
+  return takeClientSlot((query, params) => db().query(query, params) as Promise<Record<string, unknown>[]>, {
+    day,
+    bucket: "report",
+    client,
+    cap,
+  });
 }
 
 export async function insertReport(r: ReportInput): Promise<void> {

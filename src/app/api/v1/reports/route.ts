@@ -1,5 +1,6 @@
 import { apiError, rateLimit, withServerTiming } from "@/lib/api";
-import { checkReport, insertReport, takeDailySlot } from "@/lib/reports";
+import { clientId } from "@/lib/client-quota";
+import { checkReport, insertReport, takeClientReportSlot, takeDailySlot } from "@/lib/reports";
 
 // POST /api/v1/reports  { target, message, lang? }  ->  201 { ok: true }
 export const POST = withServerTiming(async (request, _context: unknown, timing) => {
@@ -16,6 +17,14 @@ export const POST = withServerTiming(async (request, _context: unknown, timing) 
   try {
     const checked = await timing.time("db", () => checkReport(body));
     if (!checked.ok) return apiError(checked.status === 404 ? "not_found" : "invalid_request", checked.message, checked.status);
+
+    // This client's quota first, so one client can't spend the global cap for everyone.
+    const clientAllowed = await timing.time("db", () => takeClientReportSlot(clientId(request)));
+    if (!clientAllowed) {
+      return apiError("daily_cap_reached", "This device has reached today's limit for reports. Please try again tomorrow.", 429, {
+        "Retry-After": String(secondsToUtcMidnight()),
+      });
+    }
 
     const allowed = await timing.time("db", () => takeDailySlot());
     if (!allowed) {

@@ -22,10 +22,12 @@ const inserts = () => query.mock.calls.filter(([sql]) => String(sql).startsWith(
 beforeEach(() => {
   query.mockReset();
   delete process.env.REPORTS_DAILY_CAP;
-  // people lookup finds "Paul@x"; cap upsert returns a row; insert returns nothing.
+  delete process.env.REPORTS_PER_CLIENT;
+  // people lookup finds "Paul@x"; cap upserts return a row; insert returns nothing.
   query.mockImplementation(async (sql: string, params: unknown[]) => {
     if (sql.startsWith("select 1 from people")) return params[0] === "Paul@Act.7.58-2Pe" ? [{ "?column?": 1 }] : [];
     if (sql.startsWith("insert into report_days")) return [{ n: 1 }];
+    if (sql.startsWith("insert into client_days")) return [{ n: 1 }];
     return [];
   });
 });
@@ -105,7 +107,7 @@ describe("POST /api/v1/reports", () => {
   });
 
   it("returns 429 rate_limited over the daily cap", async () => {
-    query.mockImplementation(async (sql: string) => (sql.startsWith("insert into report_days") ? [] : []));
+    query.mockImplementation(async (sql: string) => (sql.startsWith("insert into client_days") ? [{ n: 1 }] : []));
     const res = await post({ target: "passage:acts.4.1", message: "x" });
     expect(res.status).toBe(429);
     expect((await res.json()).error.code).toBe("rate_limited");
@@ -123,6 +125,32 @@ describe("POST /api/v1/reports", () => {
     process.env.REPORTS_DAILY_CAP = "abc";
     await post({ target: "passage:acts.4.1", message: "x" });
     expect(capCall()).toBe(500);
+  });
+
+  it("returns 429 daily_cap_reached over this client's daily quota, before spending a global slot", async () => {
+    query.mockImplementation(async (sql: string) => (sql.startsWith("insert into client_days") ? [] : [{ n: 1 }]));
+    const res = await post({ target: "passage:acts.4.1", message: "x" });
+    expect(res.status).toBe(429);
+    const { error } = await res.json();
+    expect(error.code).toBe("daily_cap_reached");
+    expect(error.message).toMatch(/this device/i);
+    expect(Number(res.headers.get("Retry-After"))).toBeGreaterThan(0);
+    expect(query.mock.calls.some(([sql]) => String(sql).startsWith("insert into report_days"))).toBe(false);
+    expect(inserts()).toHaveLength(0);
+  });
+
+  it("keys the client quota by a hash of the IP, with REPORTS_PER_CLIENT defaulting to 20", async () => {
+    const clientCall = () => query.mock.calls.filter(([sql]) => String(sql).startsWith("insert into client_days")).at(-1)![1];
+    await post({ target: "passage:acts.4.1", message: "x" }, "192.0.2.77");
+    const [, bucket, client, cap] = clientCall();
+    expect(bucket).toBe("report");
+    expect(client).toMatch(/^[0-9a-f]{64}$/);
+    expect(JSON.stringify(query.mock.calls)).not.toContain("192.0.2.77");
+    expect(cap).toBe(20);
+    process.env.REPORTS_PER_CLIENT = "3";
+    await post({ target: "passage:acts.4.1", message: "x" }, "192.0.2.77");
+    expect(clientCall()[2]).toBe(client);
+    expect(clientCall()[3]).toBe(3);
   });
 
   it("rate limits to 5 per minute per IP", async () => {

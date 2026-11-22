@@ -24,7 +24,8 @@ Scripture text is the [Berean Standard Bible](https://berean.bible/), which is i
 npm install
 neon env pull                # writes DATABASE_URL / DATABASE_URL_UNPOOLED to .env.local
 node --env-file=.env.local scripts/load-people.mjs   # loads people data into Neon (safe to re-run)
-# add ANTHROPIC_API_KEY to .env.local; optionally DAILY_GENERATION_CAP (default 200, 0 = off)
+# add ANTHROPIC_API_KEY to .env.local; optionally DAILY_GENERATION_CAP (default 200, 0 = off),
+# DAILY_GENERATION_PER_CLIENT (default 20) and CLIENT_HASH_SALT (see .env.example)
 npm run dev
 ```
 
@@ -45,10 +46,11 @@ Open http://localhost:3000.
 | Prompt, Claude call, cache, daily generation cap | `src/lib/context.ts` |
 | `POST /api/v1/context` logic | `src/lib/context-handler.ts` |
 | Tests (Vitest; database tests use PGlite with `db/schema.sql`, the model is mocked) | `src/**/*.test.ts` |
-| API v1 (`/api/v1`): `books`, `books/{book}/chapters/{n}`, `person`, `POST context`, `schema` | `src/app/api/v1/`, helpers in `src/lib/api.ts` |
+| API v1 (`/api/v1`): `books`, `books/{book}/chapters/{n}`, `person`, `POST context`, `POST reports`, `schema` | `src/app/api/v1/`, helpers in `src/lib/api.ts`; reference in `docs/api.md` |
+| Per-client daily quotas (salted IP hash) | `src/lib/client-quota.ts` |
 | Reader and context panel | `src/app/read/[book]/[chapter]/page.tsx`, `src/components/` |
 
-The reader sends its selection; the server finds the BSB section holding its first verse (sections over 30 verses are split at their subheadings, else at chapter boundaries, else into even parts) and explains that unit. The verse text always comes from `data/bsb/`. Claude only writes what data can't answer (summary, setting, historical and cultural context with a basis and confidence, interpretations by tradition, open questions) and is told who the people in the passage are. Neighbouring sections, cross references, key words and people come from data files and the people tables and are returned alongside, under `data`, separate from `ai`. Explanations are stored once per unit in Postgres (`section_context`) and served to everyone; at most `DAILY_GENERATION_CAP` new ones are generated per UTC day (`generation_days`), after which the API answers `429 daily_cap_reached` until midnight UTC while saved ones keep working. See `docs/DESIGN.md` for the reasoning and `TODOS.md` for what's next.
+The reader sends its selection; the server finds the BSB section holding its first verse (sections over 30 verses are split at their subheadings, else at chapter boundaries, else into even parts) and explains that unit. The verse text always comes from `data/bsb/`. Claude only writes what data can't answer (summary, setting, historical and cultural context with a basis and confidence, interpretations by tradition, open questions) and is told who the people in the passage are. Neighbouring sections, cross references, key words and people come from data files and the people tables and are returned alongside, under `data`, separate from `ai`. Explanations are stored once per unit (keyed by its whole range) in Postgres (`section_context`) and served to everyone; each client may cause at most `DAILY_GENERATION_PER_CLIENT` new ones per UTC day (`client_days`), and at most `DAILY_GENERATION_CAP` are generated in all (`generation_days`), after which the API answers `429 daily_cap_reached` until midnight UTC while saved ones keep working. See `docs/DESIGN.md` for the reasoning and `TODOS.md` for what's next.
 
 ## Regenerating the Bible data
 

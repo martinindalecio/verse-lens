@@ -88,18 +88,22 @@ create table if not exists ai_relationships (
 -- Passage explanations (src/lib/context.ts) ------------------------------------------------
 
 -- One explanation per BSB section unit (a section, or a part of one longer than 30 verses; see
--- src/lib/units.ts), keyed by where the unit starts. Readers' selections are highlighted inside
--- it by the client, so they are not part of the key.
+-- src/lib/units.ts), keyed by the unit's whole range: if a unit's end moves (build-sections is
+-- re-run, split rules change), the old explanation no longer matches and a new one is made.
+-- Readers' selections are highlighted inside it by the client, so they are not part of the key.
+-- (A database created before end_ch/end_v were in the key: see docs/operations.md.)
 create table if not exists section_context (
   lang           text not null,
   translation    text not null,
   book           text not null,
   start_ch       int  not null,
   start_v        int  not null,
+  end_ch         int  not null,
+  end_v          int  not null,
   prompt_version int  not null,
   context        jsonb not null,             -- PassageContextSchema (the AI part only)
   created_at     timestamptz not null default now(),
-  primary key (lang, translation, book, start_ch, start_v, prompt_version)
+  primary key (lang, translation, book, start_ch, start_v, end_ch, end_v, prompt_version)
 );
 
 -- New explanations generated per UTC day, for the daily generation cap (DAILY_GENERATION_CAP).
@@ -107,6 +111,18 @@ create table if not exists section_context (
 create table if not exists generation_days (
   day date primary key,
   n   int  not null
+);
+
+-- Per-client daily quotas, so one client can't spend the global caps for everyone
+-- (src/lib/client-quota.ts). bucket: 'generation' (DAILY_GENERATION_PER_CLIENT, default 20) or
+-- 'report' (REPORTS_PER_CLIENT, default 20). client is the SHA-256 of the IP salted with
+-- CLIENT_HASH_SALT; raw IPs are never stored. Old days can be deleted at any time.
+create table if not exists client_days (
+  day    date not null,
+  bucket text not null,
+  client text not null,
+  n      int  not null,
+  primary key (day, bucket, client)
 );
 
 -- Obsolete since PROMPT_VERSION 2: explanations were keyed by the reader's exact selection.

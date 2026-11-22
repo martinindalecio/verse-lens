@@ -2,6 +2,7 @@ import Anthropic from "@anthropic-ai/sdk";
 import { betaZodOutputFormat } from "@anthropic-ai/sdk/helpers/beta/zod";
 import { TRANSLATION, type BookMeta } from "./bible";
 import { PassageContextSchema, type NeighbourUnit, type PassageContext, type PassagePerson } from "./context-schema";
+import { DEFAULT_GENERATIONS_PER_CLIENT, parseQuota, takeClientSlot } from "./client-quota";
 import { db } from "./db";
 import { peopleForPrompt } from "./passage-data";
 import { formatChVRange, type ChV, type Unit } from "./units";
@@ -30,8 +31,18 @@ export class ContextRefusedError extends Error {}
 
 /** Today's cap of new explanations is spent. */
 export class DailyCapReachedError extends Error {
-  constructor(readonly retryAfterSeconds: number) {
-    super("Today's limit for new explanations is reached; saved ones still work.");
+  constructor(
+    readonly retryAfterSeconds: number,
+    message = "Today's limit for new explanations is reached; saved ones still work.",
+  ) {
+    super(message);
+  }
+}
+
+/** This client's share of today's new explanations is spent (DAILY_GENERATION_PER_CLIENT). */
+export class ClientCapReachedError extends DailyCapReachedError {
+  constructor(retryAfterSeconds: number) {
+    super(retryAfterSeconds, "This device has reached today's limit for new explanations; saved ones still work.");
   }
 }
 
@@ -40,9 +51,7 @@ export class GenerationCounterError extends Error {}
 
 /** DAILY_GENERATION_CAP: a non-negative integer; missing or invalid means 200; 0 turns generation off. */
 export function parseDailyCap(raw: string | undefined): number {
-  if (raw === undefined || !/^\s*\d+\s*$/.test(raw)) return DEFAULT_DAILY_CAP;
-  const n = Number(raw);
-  return Number.isSafeInteger(n) ? n : DEFAULT_DAILY_CAP;
+  return parseQuota(raw, DEFAULT_DAILY_CAP);
 }
 
 /** Seconds until the next UTC midnight, in (0, 86400]. */
@@ -71,6 +80,18 @@ export type ContextDeps = {
   now: () => Date;
   /** Today's cap (see parseDailyCap). */
   cap: () => number;
+  /** Each client's share of today's generations (DAILY_GENERATION_PER_CLIENT); default 20. */
+  clientCap?: () => number;
+};
+
+export type ContextOptions = {
+  /** Salted hash of the caller's IP (client-quota.ts); when set, the per-client quota applies. */
+  client?: string;
+  /**
+   * False when the input is incomplete (the people lookup failed): a stored answer is still
+   * served, but a new one isn't saved, so a later request with people stores the proper one.
+   */
+  store?: boolean;
 };
 
 const LANG = "en";
@@ -84,40 +105,67 @@ const TRANSLATION_ID = "bsb";
 export function createContextService(deps: ContextDeps) {
   const inFlight = new Map<string, Promise<PassageContext>>();
 
-  function getPassageContext(input: GenerateInput): Promise<PassageContext> {
-    const key = `v${PROMPT_VERSION}:${input.book.slug}.${input.unit.start[0]}.${input.unit.start[1]}`;
+  function getPassageContext(input: GenerateInput, options: ContextOptions = {}): Promise<PassageContext> {
+    const store = options.store ?? true;
+    const { start, end } = input.unit;
+    // Requests without people don't join ones with them (or the reverse): their answers differ.
+    const key = `v${PROMPT_VERSION}:${input.book.slug}.${start[0]}.${start[1]}-${end[0]}.${end[1]}${store ? "" : ":nostore"}`;
     let pending = inFlight.get(key);
     if (!pending) {
-      pending = loadOrGenerate(input).finally(() => inFlight.delete(key));
+      pending = loadOrGenerate(input, store, options.client).finally(() => inFlight.delete(key));
       inFlight.set(key, pending);
     }
     return pending;
   }
 
-  async function loadOrGenerate(input: GenerateInput): Promise<PassageContext> {
-    const where = [LANG, TRANSLATION_ID, input.book.slug, input.unit.start[0], input.unit.start[1], PROMPT_VERSION];
+  async function loadOrGenerate(input: GenerateInput, store: boolean, client: string | undefined): Promise<PassageContext> {
+    const { start, end } = input.unit;
+    const where = [LANG, TRANSLATION_ID, input.book.slug, start[0], start[1], end[0], end[1], PROMPT_VERSION];
     const stored = await deps.sql(
       `select context from section_context
-        where lang = $1 and translation = $2 and book = $3 and start_ch = $4 and start_v = $5 and prompt_version = $6`,
+        where lang = $1 and translation = $2 and book = $3 and start_ch = $4 and start_v = $5
+          and end_ch = $6 and end_v = $7 and prompt_version = $8`,
       where,
     );
     if (stored[0]) return PassageContextSchema.parse(stored[0].context);
 
-    // A cache miss that isn't joining another request: spend a slot before calling the model, so
-    // refused or failed calls count too.
-    await spendSlot();
+    // A cache miss that isn't joining another request: spend slots before calling the model, so
+    // refused or failed calls count too. This client's quota first, then the global cap.
+    const now = deps.now();
+    if (client !== undefined) await spendClientSlot(now, client);
+    await spendSlot(now);
 
     const context = await deps.generate(input);
-    await deps.sql(
-      `insert into section_context (lang, translation, book, start_ch, start_v, prompt_version, context)
-       values ($1, $2, $3, $4, $5, $6, $7) on conflict do nothing`,
-      [...where, JSON.stringify(context)],
-    );
+    if (!store) {
+      console.warn(`not storing context for ${input.book.slug} ${formatChVRange(start, end)}: people were unavailable`);
+      return context;
+    }
+    // The answer is paid for: a failed insert is logged, never turned into an error.
+    try {
+      await deps.sql(
+        `insert into section_context (lang, translation, book, start_ch, start_v, end_ch, end_v, prompt_version, context)
+         values ($1, $2, $3, $4, $5, $6, $7, $8, $9) on conflict do nothing`,
+        [...where, JSON.stringify(context)],
+      );
+    } catch (error) {
+      console.error("storing passage context failed", error);
+    }
     return context;
   }
 
-  async function spendSlot(): Promise<void> {
-    const now = deps.now();
+  async function spendClientSlot(now: Date, client: string): Promise<void> {
+    const day = now.toISOString().slice(0, 10);
+    const cap = deps.clientCap?.() ?? DEFAULT_GENERATIONS_PER_CLIENT;
+    let allowed: boolean;
+    try {
+      allowed = await takeClientSlot(deps.sql, { day, bucket: "generation", client, cap });
+    } catch (error) {
+      throw new GenerationCounterError("The per-client generation counter is unavailable.", { cause: error });
+    }
+    if (!allowed) throw new ClientCapReachedError(secondsToNextUtcMidnight(now));
+  }
+
+  async function spendSlot(now: Date): Promise<void> {
     const day = now.toISOString().slice(0, 10);
     let rows: Record<string, unknown>[];
     try {
@@ -145,6 +193,7 @@ export function contextService() {
     generate: generateWithClaude,
     now: () => new Date(),
     cap: () => parseDailyCap(process.env.DAILY_GENERATION_CAP),
+    clientCap: () => parseQuota(process.env.DAILY_GENERATION_PER_CLIENT, DEFAULT_GENERATIONS_PER_CLIENT),
   });
   return service;
 }

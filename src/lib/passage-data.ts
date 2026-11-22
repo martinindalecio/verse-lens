@@ -208,10 +208,10 @@ export async function keyTerms({ book, unit, chapterLength }: UnitContext): Prom
 
 /**
  * People named in the unit (not divine names), in order of first mention, with TIPNR's brief.
- * Needs the database; when it is unavailable the list is empty and the explanation goes on
- * without it.
+ * Needs the database; null when the lookup fails (as opposed to [] for a unit naming nobody), so
+ * the caller can explain the passage without people but not store that weaker answer.
  */
-export async function unitPeople({ book, unit }: Pick<UnitContext, "book" | "unit">): Promise<PassagePerson[]> {
+export async function unitPeople({ book, unit }: Pick<UnitContext, "book" | "unit">): Promise<PassagePerson[] | null> {
   try {
     const chapters: number[] = [];
     for (let ch = unit.start[0]; ch <= unit.end[0]; ch++) chapters.push(ch);
@@ -251,7 +251,7 @@ export async function unitPeople({ book, unit }: Pick<UnitContext, "book" | "uni
     return [...found.values()];
   } catch (error) {
     console.warn("people for passage context unavailable:", error instanceof Error ? error.message : error);
-    return [];
+    return null;
   }
 }
 
