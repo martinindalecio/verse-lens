@@ -1,10 +1,10 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // Bible text and section headings are read from disk at runtime; make sure they ship with the
-  // server bundle.
+  // Bible text, section headings, cross references and original-language words are read from
+  // disk at runtime; make sure they ship with the server bundle.
   outputFileTracingIncludes: {
-    "/*": ["./data/bsb/**/*", "./data/sections/**/*"],
+    "/*": ["./data/bsb/**/*", "./data/sections/**/*", "./data/crossrefs/**/*", "./data/words/**/*"],
   },
   cacheComponents: true,
   partialPrefetching: true,
