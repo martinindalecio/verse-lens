@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
+import type { PassageContextResponse } from "@/lib/context-schema";
 import type { ChapterPeople, Span } from "@/lib/people";
 import { ContextPanel, type ContextState } from "./context-panel";
 import { PersonCard, type Jump } from "./person-card";
@@ -131,8 +132,14 @@ export function ChapterReader({ bookSlug, bookName, chapter, verses, people, ini
         body: JSON.stringify({ book: bookSlug, chapter, ...r }),
       });
       const body = await res.json();
-      if (!res.ok) throw new Error(body.error?.message ?? `Request failed (${res.status})`);
-      setContexts((c) => ({ ...c, [key]: { status: "done", reference, context: body.context } }));
+      if (!res.ok) {
+        // Over the daily cap: say "try later" and don't retry on our own.
+        const retryAfter = Number(res.headers.get("Retry-After")) || undefined;
+        const message = body.error?.message ?? `Request failed (${res.status})`;
+        setContexts((c) => ({ ...c, [key]: { status: "error", reference, message, code: body.error?.code, retryAfter } }));
+        return;
+      }
+      setContexts((c) => ({ ...c, [key]: { status: "done", reference, response: body as PassageContextResponse } }));
     } catch (error) {
       setContexts((c) => ({ ...c, [key]: { status: "error", reference, message: error instanceof Error ? error.message : String(error) } }));
     }
@@ -280,10 +287,11 @@ export function ChapterReader({ bookSlug, bookName, chapter, verses, people, ini
             <PassageView
               title={`${bookName} ${chapter}:${top.start}${top.end !== top.start ? `–${top.end}` : ""}`}
               range={top}
+              chapter={chapter}
               people={people}
               state={contexts[rangeKey(top)]}
               onExplain={() => explain(top)}
-              onOpenPerson={(id, label) => openPerson(id, label, top.start)}
+              onOpenPerson={(id, label, verse = top.start) => openPerson(id, label, verse)}
             />
           ) : (
             <Hint tab={top?.type === "hint" ? top.tab : "people"} />
@@ -339,6 +347,7 @@ function VerseText({
 function PassageView({
   title,
   range,
+  chapter,
   people,
   state,
   onExplain,
@@ -346,10 +355,11 @@ function PassageView({
 }: {
   title: string;
   range: Range;
+  chapter: number;
   people: ChapterPeople;
   state: ContextState | undefined;
   onExplain: () => void;
-  onOpenPerson: (id: string, label: string) => void;
+  onOpenPerson: (id: string, label: string, verse?: number) => void;
 }) {
   const here = new Map<string, string>();
   for (let v = range.start; v <= range.end; v++) {
@@ -387,7 +397,11 @@ function PassageView({
           <p className="text-sm text-muted">Written by AI from the verses, with the basis for each claim.</p>
         </div>
       ) : (
-        <ContextPanel state={state} />
+        <ContextPanel
+          state={state}
+          // People named elsewhere in the section open at their verse when it is in this chapter.
+          onOpenPerson={(id, label, [ch, v]) => onOpenPerson(id, label, ch === chapter ? v : range.start)}
+        />
       )}
     </div>
   );

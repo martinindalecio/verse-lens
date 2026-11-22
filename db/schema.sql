@@ -85,8 +85,32 @@ create table if not exists ai_relationships (
   primary key (person_id, related_id, lang)
 );
 
--- Passage explanations (replaces the in-memory cache in src/lib/context.ts) ----------------
+-- Passage explanations (src/lib/context.ts) ------------------------------------------------
 
+-- One explanation per BSB section unit (a section, or a part of one longer than 30 verses; see
+-- src/lib/units.ts), keyed by where the unit starts. Readers' selections are highlighted inside
+-- it by the client, so they are not part of the key.
+create table if not exists section_context (
+  lang           text not null,
+  translation    text not null,
+  book           text not null,
+  start_ch       int  not null,
+  start_v        int  not null,
+  prompt_version int  not null,
+  context        jsonb not null,             -- PassageContextSchema (the AI part only)
+  created_at     timestamptz not null default now(),
+  primary key (lang, translation, book, start_ch, start_v, prompt_version)
+);
+
+-- New explanations generated per UTC day, for the daily generation cap (DAILY_GENERATION_CAP).
+-- A slot is spent before each model call, so refused or failed calls count too.
+create table if not exists generation_days (
+  day date primary key,
+  n   int  not null
+);
+
+-- Obsolete since PROMPT_VERSION 2: explanations were keyed by the reader's exact selection.
+-- Nothing reads or writes it any more; kept so existing rows aren't dropped by accident.
 create table if not exists passage_context (
   lang           text not null,
   translation    text not null,

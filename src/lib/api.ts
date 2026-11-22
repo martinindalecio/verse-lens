@@ -5,6 +5,7 @@ export type ApiErrorCode =
   | "invalid_request"
   | "not_found"
   | "rate_limited"
+  | "daily_cap_reached"
   | "upstream_rate_limited"
   | "refused"
   | "server_misconfigured"
