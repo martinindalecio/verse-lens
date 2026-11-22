@@ -29,6 +29,7 @@ Open http://localhost:3000.
 | Piece | Where |
 | --- | --- |
 | Bible text, one JSON file per book | `data/bsb/` (built by `scripts/build-bible.py`) |
+| Original-language words per verse (Strong's ids) and lexicon | `data/words/<book>.json`, `data/words/lexicon.json` (built by `scripts/build-words.py`) |
 | Book list and chapter loading | `src/lib/bible.ts` |
 | Context schema (shared by API and UI) | `src/lib/context-schema.ts` |
 | Prompt, Claude call, cache | `src/lib/context.ts` |
@@ -43,5 +44,25 @@ The server looks up the verse text itself and sends the whole chapter to Claude,
 curl -LO https://raw.githubusercontent.com/scrollmapper/bible_databases/master/formats/json/BSB.json
 python3 scripts/build-bible.py BSB.json
 ```
+
+Original-language words (STEPBible TAGNT Greek NT and TAHOT Hebrew OT; both files say CC BY 4.0, the script refuses any file that does not). The raw files are not committed, because STEPBible asks that copies not be reposted:
+
+```bash
+mkdir -p /tmp/stepbible
+base="https://raw.githubusercontent.com/STEPBible/STEPBible-Data/master/Translators%20Amalgamated%20OT%2BNT"
+get() { curl -fL -o "/tmp/stepbible/$1.txt" "$base/$2.txt"; }
+get "TAGNT Mat-Jhn" "TAGNT%20Mat-Jhn%20-%20Translators%20Amalgamated%20Greek%20NT%20-%20STEPBible.org%20CC-BY"
+get "TAGNT Act-Rev" "TAGNT%20Act-Rev%20-%20Translators%20Amalgamated%20Greek%20NT%20-%20STEPBible.org%20CC-BY"
+for r in Gen-Deu Jos-Est Job-Sng Isa-Mal; do
+  get "TAHOT $r" "TAHOT%20$r%20-%20Translators%20Amalgamated%20Hebrew%20OT%20-%20STEPBible.org%20CC%20BY"
+done
+python3 -I scripts/build-words.py /tmp/stepbible
+```
+
+## Data credits
+
+- Bible text: Berean Standard Bible (public domain).
+- People: STEPBible-Data (TIPNR), Tyndale House Cambridge, CC BY 4.0.
+- Original-language words: STEPBible-Data (TAGNT, TAHOT), Tyndale House Cambridge, CC BY 4.0.
 
 Built with Next.js 16 (App Router, Cache Components) and Tailwind CSS 4.
