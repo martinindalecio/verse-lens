@@ -1,6 +1,7 @@
-import { getBook } from "./bible";
+import { getBook, getChapter } from "./bible";
 import { db } from "./db";
-import { getSections } from "./sections";
+import { getSections, sectionAt } from "./sections";
+import { sectionUnits } from "./units";
 
 // In-app "Report a mistake". Validation lives here so the route stays thin and tests can
 // exercise it with db() mocked. The message is stored and shown as plain text only.
@@ -47,10 +48,16 @@ export async function checkReport(body: unknown): Promise<Checked> {
     if (!m || !getBook(m[1])) return bad("Expected passage:<book>.<chapter>.<verse>.");
     const chapter = Number(m[2]);
     const verse = Number(m[3]);
-    const sections = await getSections(m[1]);
-    if (!sections.some((s) => s.start[0] === chapter && s.start[1] === verse)) {
-      return bad("That verse doesn't start a passage.", 404);
+    // Passage reports name the start of the unit the Passage tab explained: a BSB section,
+    // or one part of a long section (src/lib/units.ts).
+    const section = sectionAt(await getSections(m[1]), chapter, verse);
+    let startsUnit = false;
+    if (section) {
+      const lengths = new Map<number, number>();
+      for (let ch = section.start[0]; ch <= section.end[0]; ch++) lengths.set(ch, (await getChapter(m[1], ch))?.length ?? 0);
+      startsUnit = sectionUnits(section, (ch) => lengths.get(ch) ?? 0).some((u) => u.start[0] === chapter && u.start[1] === verse);
     }
+    if (!startsUnit) return bad("That verse doesn't start a passage.", 404);
   } else {
     return bad("target must be person:<id> or passage:<book>.<chapter>.<verse>.");
   }

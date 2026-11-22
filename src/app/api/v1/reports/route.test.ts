@@ -85,6 +85,11 @@ describe("POST /api/v1/reports", () => {
     expect(inserts()).toHaveLength(0);
   });
 
+  it("accepts the start of one part of a long section (Psalm 119 splits at its acrostic letters)", async () => {
+    expect((await post({ target: "passage:psalms.119.9", message: "x" })).status).toBe(201);
+    expect((await post({ target: "passage:psalms.119.10", message: "x" })).status).toBe(404);
+  });
+
   it("404s a verse that does not start a section", async () => {
     const res = await post({ target: "passage:acts.4.2", message: "x" });
     expect(res.status).toBe(404);
